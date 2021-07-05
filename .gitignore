@@ -6,3 +6,4 @@ node_modules
 
 #put any other files you don't want to check in here
 .env
+coverage
