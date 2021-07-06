@@ -44,7 +44,7 @@ exports.newsletterSignup = ([
 
         console.log(`${result.insertedCount} document inserted with _id: ${result.insertedId}`);
 
-        response.status(303);
+        response.status(200);
         response.render(page, {subscribeMessage: 'Thank you for subscribing to Foster Awareness!'});
     } catch (err) {
         console.log(err);
