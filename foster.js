@@ -7,6 +7,7 @@ const app = express();
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Disable s-powered-by deader
 app.disable('x-powered-by');
@@ -25,19 +26,7 @@ app.get('/', handlers.home);
 
 app.get('/about', handlers.about);
 
-app.post('/name', (request, response) => {
-    const name = request.body.name;
-    console.log(name);
-    response.render('home', { name: name });
-});
-
-app.post('/emailSubscriptions', handlers.newsletterSignup);
-
-app.get('/headers', (request, response) => {
-    const headers = Object.entries(request.headers)
-        .map(([key, value]) => `${key} : ${value}`)
-    response.send(headers.join("\n"));
-});
+app.post('/api/emailSubscriptions', handlers.api.emailSubscriptions);
 
 // custom 404 page
 app.use(handlers.notFound);

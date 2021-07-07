@@ -15,6 +15,7 @@ const client = new MongoClient(uri, {useUnifiedTopology: true});
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 exports.home = (request, response) => response.render('home', {whichPage: 'home', 
     subscribeMessage: 'Enter Email', 
@@ -26,32 +27,33 @@ exports.about = (request, response) => response.render('about', {whichPage: 'abo
 
 exports.notFound = (request, response) => response.render('404');
 
-exports.newsletterSignup = ([
-    check('emailSubscriber').isEmail().normalizeEmail()
-        .withMessage('Email should follow a format similar to: example@yahoo.com')
-], async function (request, response) {
-    
-    const page = request.body.page;
-    const email = request.body.emailSubscriber;
-    
-    try {
-        await client.connect();
-        const database = client.db('foster');
-        const collection = database.collection('email_subscriptions');
+exports.api = {
+    emailSubscriptions: [
+        check('emailSubscriber').isEmail().normalizeEmail()
+            .withMessage('Email should follow a format similar to: example@yahoo.com')
+    ], async function (request, response) {
+        console.log(request.body);
+        const email = request.body.emailSubscriber;
 
-        const doc = {email: email};
-        const result = await collection.insertOne(doc);
+        try {
+            await client.connect();
+            const database = client.db('foster');
+            const collection = database.collection('email_subscriptions');
 
-        console.log(`${result.insertedCount} document inserted with _id: ${result.insertedId}`);
+            const doc = {email: email};
+            const result = await collection.insertOne(doc);
 
-        response.status(200);
-        response.render(page, {subscribeMessage: 'Thank you for subscribing to Foster Awareness!'});
-    } catch (err) {
-        console.log(err);
-        response.status(400);
-        response.render(page, {subscribeMessage: err.toString()});
+            console.log(`${result.insertedCount} document inserted with _id: ${result.insertedId}`);
+
+            response.status(200);
+            response.send({ result: 'sucess' });
+        } catch (err) {
+            console.log(err);
+            response.status(400);
+            response.render(page, {subscribeMessage: err.toString()});
+        }
     }
-});
+}
 
 
 // Express handles this error by way of the four arguments. We need the next argument,

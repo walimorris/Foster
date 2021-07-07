@@ -64,7 +64,7 @@
         </section>
 
         <section class="">
-            <form id="email-subscriptions-form" action="/emailSubscriptions" method="post">
+            <form id="email-subscriptions-form" action="/api/emailSubscriptions" method="post">
                 <div class="row d-flex justify-content-center">
                     <div class="col-auto">
                         <p class="pt-2">
@@ -76,7 +76,7 @@
                         <div class="form-outline form-white mb-4">
                             <input type="hidden" name="page" value="{{whichPage}}">
                             <input type="email" id="email-subscription" name="emailSubscriber" class="form-control"/>
-                            <label id="form-label" class="form-label" for="email-subscription">{{subscribeMessage}}</label>
+                            <label id="email-subscription-form-label" class="form-label" for="email-subscription">{{subscribeMessage}}</label>
                         </div>
                     </div>
 
@@ -157,5 +157,6 @@
     </div>
 </footer>
 </body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/javascripts/emailSubscriptions.js" type="text/javascript"></script>
 </html>
