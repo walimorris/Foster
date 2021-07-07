@@ -16,6 +16,7 @@ const client = new MongoClient(uri, {useUnifiedTopology: true});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.json());
 
 exports.home = (request, response) => response.render('home', {whichPage: 'home', 
     subscribeMessage: 'Enter Email', 
@@ -28,13 +29,9 @@ exports.about = (request, response) => response.render('about', {whichPage: 'abo
 exports.notFound = (request, response) => response.render('404');
 
 exports.api = {
-    emailSubscriptions: [
-        check('emailSubscriber').isEmail().normalizeEmail()
-            .withMessage('Email should follow a format similar to: example@yahoo.com')
-    ], async function (request, response) {
-        console.log(request.body);
+    emailSubscriptions:  async function (request, response) {
         const email = request.body.emailSubscriber;
-
+        const activatingPage = request.body.page;
         try {
             await client.connect();
             const database = client.db('foster');
@@ -43,10 +40,10 @@ exports.api = {
             const doc = {email: email};
             const result = await collection.insertOne(doc);
 
-            console.log(`${result.insertedCount} document inserted with _id: ${result.insertedId}`);
+            console.info(`${result.insertedCount} document inserted with _id: ${result.insertedId}`);
 
             response.status(200);
-            response.send({ result: 'sucess' });
+            response.send({ result: 'success', page: activatingPage });
         } catch (err) {
             console.log(err);
             response.status(400);

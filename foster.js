@@ -8,6 +8,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.json());
 
 // Disable s-powered-by deader
 app.disable('x-powered-by');
