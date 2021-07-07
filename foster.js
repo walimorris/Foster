@@ -1,6 +1,7 @@
 require('dotenv').config(); 
 const handlers = require('./libs/handlers');
 const express = require('express');
+const path = require('path');
 const expressHandlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const app = express();
@@ -21,7 +22,8 @@ app.set('view engine', 'handlebars');
 
 const port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname + '/public')));
+app.use(express.static(path.join(__dirname, '/public/stylesheets')));
 
 app.get('/', handlers.home);
 

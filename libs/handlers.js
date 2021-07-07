@@ -18,15 +18,28 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
 
-exports.home = (request, response) => response.render('home', {whichPage: 'home', 
+exports.home = (request, response) => response.render('home', {
+    stylesheet: './stylesheets/home.css',
+    whichPage: 'home', 
     subscribeMessage: 'Enter Email', 
-    title: 'Foster Awareness'});
+    title: 'Foster Awareness'
+});
 
-exports.about = (request, response) => response.render('about', {whichPage: 'about', 
+exports.about = (request, response) => response.render('about', {
+    stylesheet: './stylesheets/about.css',
+    whichPage: 'about', 
     subscribeMessage: 'Enter Email', 
-    title: 'About Foster'});
+    title: 'About Foster'
+});
 
 exports.notFound = (request, response) => response.render('404');
+
+// Express handles this error by way of the four arguments. We need the next argument,
+// though ESLint will complain about it. Therefore we will disable this line for ESlint.
+/* eslint-disable no-unused-vars */
+exports.serverError = (error, request, response, next) => response.render('500');
+
+/* eslint-enable no-unused-vars */
 
 exports.api = {
     emailSubscriptions:  async function (request, response) {
@@ -51,11 +64,3 @@ exports.api = {
         }
     }
 }
-
-
-// Express handles this error by way of the four arguments. We need the next argument,
-// though ESLint will complain about it. Therefore we will disable this line for ESlint.
-/* eslint-disable no-unused-vars */
-exports.serverError = (error, request, response, next) => response.render('500');
-
-/* eslint-enable no-unused-vars */
