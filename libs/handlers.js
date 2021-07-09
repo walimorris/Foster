@@ -8,6 +8,8 @@ const app = express();
 const db = process.env.DB;
 const user = process.env.USER;
 const key = process.env.KEY;
+const fr = process.env.FR;
+const subs = process.env.SUBS;
 const cluster = process.env.CLUSTER;
 
 const uri = db + user + ":" + key + cluster;
@@ -18,12 +20,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
 
-exports.home = (request, response) => response.render('home', {
-    stylesheet: './stylesheets/home.css',
-    whichPage: 'home', 
-    subscribeMessage: 'Enter Email', 
-    title: 'Foster Awareness'
-});
+exports.home = (request, response) => {
+    response.render('home', {
+        stylesheet: './stylesheets/home.css',
+        whichPage: 'home',
+        subscribeMessage: 'Enter Email',
+        title: 'Foster Awareness'
+    });
+}
 
 exports.about = (request, response) => response.render('about', {
     stylesheet: './stylesheets/about.css',
@@ -32,23 +36,25 @@ exports.about = (request, response) => response.render('about', {
     title: 'About Foster'
 });
 
-exports.notFound = (request, response) => response.render('404');
+exports.notFound = (request, response) => response.render('404', { layout: false });
 
 // Express handles this error by way of the four arguments. We need the next argument,
 // though ESLint will complain about it. Therefore we will disable this line for ESlint.
 /* eslint-disable no-unused-vars */
-exports.serverError = (error, request, response, next) => response.render('500');
-
+exports.serverError = (error, request, response, next) => {
+    response.render('500', { layout:false });
+}
 /* eslint-enable no-unused-vars */
 
 exports.api = {
     emailSubscriptions:  async function (request, response) {
         const email = request.body.emailSubscriber;
         const activatingPage = request.body.page;
+        
         try {
             await client.connect();
-            const database = client.db('foster');
-            const collection = database.collection('email_subscriptions');
+            const database = client.db(fr);
+            const collection = database.collection(subs);
 
             const doc = {email: email};
             const result = await collection.insertOne(doc);
@@ -60,7 +66,7 @@ exports.api = {
         } catch (err) {
             console.log(err);
             response.status(400);
-            response.render(page, {subscribeMessage: err.toString()});
+            response.render(activatingPage, {subscribeMessage: err.toString()});
         }
     }
 }

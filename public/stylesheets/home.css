@@ -36,3 +36,8 @@
     width: 200px;
     height: 50px;
 }
+
+/* remove bootstrap text decoration on footer links */
+.text-white {
+    text-decoration: none;
+}
