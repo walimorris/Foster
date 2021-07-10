@@ -4,12 +4,16 @@ const emailSubscriptions = $(function () {
     const _id = 'id';
     const _nocolor = 'rgba(0, 0, 0, 0)';
     const _white = 'rgba(255, 255, 255)';
+    const _black = '#000000';
     const _bg = 'background-color';
     const _none = 'none';
+    const _border = 'border';
     const css_color = 'color';
     const transparent = 'transparent';
     const t_decoration = 'text-decoration';
-    const tourCtaButtonColor = '#6495ed';
+    const tourCtaButtonBorder = '3px solid #ffffff';
+    const tourCtaButtonBorderHover = '3px solid #000000';
+    const tourCtaButtonColor = '#ffff00';
     const footerHoverColor = '#d3d3d3';
     const footerLinks = 'footer_links';
     const footerLinksClass = 'text-white';
@@ -31,9 +35,11 @@ const emailSubscriptions = $(function () {
      * Listens for mouseover interaction on tour cta button.
      */
     $('#tour-cta-button').mouseover(function (e) {
-        $(this).css(_bg, tourCtaButtonColor);
+        $(this).css(_bg, tourCtaButtonColor).css(css_color, _black)
+            .css(_border, tourCtaButtonBorderHover);
         $(this).mouseout(function (e) {
-            $(this).css(_bg, transparent);
+            $(this).css(_bg, transparent).css(css_color, _white)
+                .css(_border, tourCtaButtonBorder);
         });
     });
 
