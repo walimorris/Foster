@@ -25,7 +25,8 @@ exports.home = (request, response) => {
         stylesheet: './stylesheets/home.css',
         whichPage: 'home',
         subscribeMessage: 'Enter Email',
-        title: 'Foster Awareness'
+        title: 'Foster Awareness', 
+        pageScript: '/javascripts/home.js'
     });
 }
 
@@ -33,7 +34,8 @@ exports.about = (request, response) => response.render('about', {
     stylesheet: './stylesheets/about.css',
     whichPage: 'about', 
     subscribeMessage: 'Enter Email', 
-    title: 'About Foster'
+    title: 'About Foster',
+    pageScript: '/javascripts/about.js'
 });
 
 exports.notFound = (request, response) => response.render('404', { layout: false });
