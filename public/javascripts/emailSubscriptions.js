@@ -7,13 +7,15 @@ const emailSubscriptions = $(function () {
     const _bg = 'background-color';
     const _none = 'none';
     const css_color = 'color';
+    const transparent = 'transparent';
     const t_decoration = 'text-decoration';
+    const tourCtaButtonColor = '#6495ed';
     const footerHoverColor = '#d3d3d3';
     const footerLinks = 'footer_links';
     const footerLinksClass = 'text-white';
 
     /**
-     * Listens for mouseover on footer's bottom links.
+     * Listens for mouseover interaction on footer's bottom links.
      */
     $('a').mouseover(function (e) {
         const element = e.target;
@@ -23,6 +25,16 @@ const emailSubscriptions = $(function () {
                 hoverFooterLink(elementId, footerHoverColor);
             }
         }
+    });
+
+    /**
+     * Listens for mouseover interaction on tour cta button.
+     */
+    $('#tour-cta-button').mouseover(function (e) {
+        $(this).css(_bg, tourCtaButtonColor);
+        $(this).mouseout(function (e) {
+            $(this).css(_bg, transparent);
+        });
     });
 
     /**
@@ -63,18 +75,15 @@ const emailSubscriptions = $(function () {
             fetch('/api/emailSubscriptions', { method: 'post', headers, body })
               .then( response => {
                 if (response.status < 200 || response.status >= 300) {
-                    $('#email-subscription-form-label').text(`Error 1: ${response.status}`);
-                    throw new Error(`Request failed with status ${response.status}`);
+                    $('#email-subscription-form-label')
+                        .text('Sorry, we had a problem submitting your email. Please try again.');
+                    throw new Error('Error processing email submission form.');
                 }
             })
-            .then(json => {
-                $('#email-subscription-form-label').text('Thank you for subscribing!');
-            })
-            .catch(err => {
-                $('#email-subscription-form-label').text('Error: ' + err);
-            });
+            .then(json => $('#email-subscription-form-label').text('Thank you for subscribing!'))
+            .catch(err => $('#email-subscription-form-label')
+                    .text('Sorry, we had a problem submitting your email. Please try again.'));
         });
     }
-    
     loadEmailSubscriptions(); 
 });

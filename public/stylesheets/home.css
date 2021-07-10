@@ -41,3 +41,35 @@
 .text-white {
     text-decoration: none;
 }
+
+.element_border_horizontal {
+    margin: auto;
+    padding-bottom: 1.5vh;
+    padding-top: 1.5vh;
+    width: 85vw;
+    border-bottom: 2px solid #d3d3d3;
+}
+
+.main {
+    height: 550px;
+    padding-top: 20px;
+}
+
+.foster_facts {
+    float: left;
+    width: 50vw;
+    height: 500px;
+    margin-left: 10px;
+    border: 1px solid red;
+}
+
+.facts_download {
+    float: right;
+    width: 50vw;
+    margin-right: 10px;
+    border: 1px solid red;
+}
+
+footer {
+    margin-top: 50px;
+}
