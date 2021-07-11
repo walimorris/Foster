@@ -51,7 +51,6 @@ app.use(function (error, request, response, next) {
     // add logging for csrf error
     response.status(403);
     response.send('CSURF Error.');
-    
 });
 
 // custom 404 page

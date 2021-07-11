@@ -19,6 +19,7 @@ const client = new MongoClient(uri, {useUnifiedTopology: true});
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(csrf());
 
 app.use(session({
     secret: 'sabertooth',
@@ -27,7 +28,6 @@ app.use(session({
     cookie: { secure: false },
 }));
 
-app.use(csrf());
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -38,7 +38,7 @@ exports.home = (request, response) => {
         subscribeMessage: 'Enter Email',
         title: 'Foster Awareness', 
         pageScript: '/javascripts/home.js',
-        csrfToken: request.csrfToken(),
+        csrfToken: request.csrfToken,
     });
 }
 
@@ -48,7 +48,7 @@ exports.about = (request, response) => response.render('about', {
     subscribeMessage: 'Enter Email', 
     title: 'About Foster',
     pageScript: '/javascripts/about.js',
-    csrfToken: request.csrfToken(),
+    csrfToken: request.csrfToken,
 });
 
 exports.notFound = (request, response) => response.render('404', { layout: false });
