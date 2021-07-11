@@ -1,5 +1,7 @@
 require('dotenv').config();
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const csrf = require('csurf');
 const {check, validationResult} = require('express-validator');
 var MongoClient = require('mongodb').MongoClient;
 const express = require('express');
@@ -17,6 +19,15 @@ const client = new MongoClient(uri, {useUnifiedTopology: true});
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(session({
+    secret: 'sabertooth',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+}));
+
+app.use(csrf());
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -26,7 +37,8 @@ exports.home = (request, response) => {
         whichPage: 'home',
         subscribeMessage: 'Enter Email',
         title: 'Foster Awareness', 
-        pageScript: '/javascripts/home.js'
+        pageScript: '/javascripts/home.js',
+        csrfToken: request.csrfToken(),
     });
 }
 
@@ -35,7 +47,8 @@ exports.about = (request, response) => response.render('about', {
     whichPage: 'about', 
     subscribeMessage: 'Enter Email', 
     title: 'About Foster',
-    pageScript: '/javascripts/about.js'
+    pageScript: '/javascripts/about.js',
+    csrfToken: request.csrfToken(),
 });
 
 exports.notFound = (request, response) => response.render('404', { layout: false });

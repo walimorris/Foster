@@ -1,6 +1,8 @@
 require('dotenv').config(); 
 const handlers = require('./libs/handlers');
 const express = require('express');
+const session = require('express-session');
+const csrf = require('csurf');
 const path = require('path');
 const expressHandlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
@@ -8,6 +10,15 @@ const app = express();
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(session({
+    secret: 'sabertooth',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+}));
+
+app.use(csrf());
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -30,6 +41,18 @@ app.get('/', handlers.home);
 app.get('/about', handlers.about);
 
 app.post('/api/emailSubscriptions', handlers.api.emailSubscriptions);
+
+// csurf token error
+app.use(function (error, request, response, next) {
+    if (error !== 'EBADCSRFTOKEN') {
+        next(error);
+        return;
+    }
+    // add logging for csrf error
+    response.status(403);
+    response.send('CSURF Error.');
+    
+});
 
 // custom 404 page
 app.use(handlers.notFound);

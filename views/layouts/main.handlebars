@@ -26,10 +26,6 @@
                         <a class="nav-link" href="/about">About</a>
                     </li>
                 </ul>
-                <form action="/name" method="post">
-                    <input name="name">
-                    <button>Submit</button>
-                </form>
             </div>
         </div>
     </nav>
@@ -76,6 +72,7 @@
                     <div class="col-md-5 col-12">
                         <div class="form-outline form-white mb-4">
                             <input type="hidden" name="page" value="{{whichPage}}">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
                             <input type="email" id="email-subscription" name="emailSubscriber" class="form-control"/>
                             <label id="email-subscription-form-label" class="form-label" for="email-subscription">{{subscribeMessage}}</label>
                         </div>
