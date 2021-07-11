@@ -62,16 +62,17 @@ ul {
 .foster_facts {
     float: left;
     width: 50%;
+    padding-right: 70px;
     margin-left: 10px;
     border-right: 1px solid #d3d3d3;
 }
 
 .foster_stat_header {
     font-size: 30px;
+    color: #707070;
 }
 
 .foster_stat {
-    width: 550px;
 }
 
 #childwelfare_link {
@@ -90,7 +91,7 @@ ul {
 }
 
 #news_section_1 {
-    height: 39.5%
+    height: 39.5%;
 }
 
 #news_section_2 {
@@ -102,7 +103,7 @@ ul {
     box-shadow: 10px 10px 5px #ccc;
     object-fit: contain;
     height: 75%;
-    width: 100%;
+    width: auto;
 }
 
 .news_header {

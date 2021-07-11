@@ -6,7 +6,7 @@ const homepage = $(function () {
     const _border = 'border';
     const transparent = 'transparent';
     const _white = 'rgba(255, 255, 255)';
-    const tourCtaButtonColor = '#ffff00';
+    const tourCtaButtonColor = '#eeee9b';
     const tourCtaButtonBorder = '3px solid #ffffff';
     const tourCtaButtonBorderHover = '3px solid #000000';
 
