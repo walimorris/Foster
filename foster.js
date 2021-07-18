@@ -1,9 +1,11 @@
 require('dotenv').config(); 
 const handlers = require('./libs/handlers');
 const express = require('express');
+const fs = require('fs');
 const session = require('express-session');
 const csrf = require('csurf');
 const path = require('path');
+const morgan = require('morgan');
 const expressHandlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const app = express();
@@ -30,6 +32,10 @@ app.engine('handlebars', expressHandlebars({
     defaultLayout: 'main',
 }));
 app.set('view engine', 'handlebars');
+
+// morgan predefined logging format
+const logging = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+app.use(morgan('combined', { stream: logging }));
 
 const port = process.env.PORT || 3000;
 
