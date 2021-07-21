@@ -11,27 +11,24 @@
 }
 
 .about-cta-header {
-    padding-top: 100px;
+    padding-top: 65px;
     font-family: 'Titan One', serif;
 }
 
-.about-cta-body {
-    padding-top: 100px;
-    font-family: 'Abhaya Libre', serif;
-}
-
-#about-text-white {
+#about-bold-white {
     color: white;
 }
 
 .middle-container {
     display: flex;
     justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .about-text {
     text-align: center;
-    font-size: 22px;
-    width: 500px;
+    font-size: 20px;
+    width: 700px;
     font-family: 'Abhaya Libre', serif;
 }

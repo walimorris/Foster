@@ -44,6 +44,8 @@ app.use(express.static(path.join(__dirname, '/public/stylesheets')));
 
 app.get('/', handlers.home);
 
+app.get('/locations', handlers.locations);
+
 app.get('/about', handlers.about);
 
 app.post('/api/emailSubscriptions', handlers.api.emailSubscriptions);

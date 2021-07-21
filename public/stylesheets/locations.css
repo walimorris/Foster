@@ -1,0 +1,4 @@
+/* remove bootstrap text decoration on footer links */
+.text-white {
+    text-decoration: none;
+}

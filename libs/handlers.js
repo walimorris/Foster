@@ -42,6 +42,15 @@ exports.home = (request, response) => {
     });
 }
 
+exports.locations = (request, response) => response.render('locations', {
+    stylesheet: './stylesheets/locations.css',
+    whichPage: 'locations',
+    subscribeMessage: 'Enter Email',
+    title: 'Find Location',
+    pageScript: '/javascripts/locations.js',
+    csrfToken: request.csrfToken,
+});
+
 exports.about = (request, response) => response.render('about', {
     stylesheet: './stylesheets/about.css',
     whichPage: 'about', 
