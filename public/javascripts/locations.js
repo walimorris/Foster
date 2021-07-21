@@ -1,5 +1,3 @@
-import { cityMap } from './cityMap';
-
 const locationsPage = $(function () {
 
     $stateSelected = $('#states');
