@@ -1,4 +1,4 @@
-require('dotenv').config(); 
+require('dotenv').config();
 const handlers = require('./libs/handlers');
 const express = require('express');
 const fs = require('fs');

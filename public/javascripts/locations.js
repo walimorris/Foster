@@ -3,22 +3,29 @@ const locationsPage = $(function () {
     $stateSelected = $('#states');
     $cityList = $('#city');
 
-    // example map for visual, refactor this into a helper class
-    let cityMap = new Map();
-    cityMap.set('Washington', ['Seattle', 'Spokane', 'Olympia']);
-    cityMap.set('Ohio', ['Cincinnati', 'Columbus', 'Dayton']);
+    let map = new CityMap('Alabama');
+    const states = map.getStates();
+    createStateOptions(states);
 
-
+    /**
+     * updates city options on new state selection.
+     */
     $stateSelected.click( function (e) {
         removeCurrentCities();
 
-        const cities = cityMap.get($stateSelected.val().toString());
+        map.setState($stateSelected.val());
+        const cities = map.getCities(); 
         appendCurrentCities(cities);
     });
 
-    // removes all city options of form
-    function removeCurrentCities() {
-        $cityList.empty();
+    /**
+     * Build states in form's option list.
+     * @param states
+     */
+    function createStateOptions(states) {
+        states.forEach( function (state) {
+            $stateSelected.append('<option>' + state + '</option>');
+        });
     }
 
     /**
@@ -29,5 +36,12 @@ const locationsPage = $(function () {
         cities.forEach( function (city) {
             $cityList.append('<option>' + city + '</option>');
         });
+    }
+
+    /**
+     * Removes current list of cities from form.
+     */
+    function removeCurrentCities() {
+        $cityList.empty();
     }
 });
