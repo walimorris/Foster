@@ -70,6 +70,21 @@ class CityMap {
         this.#illinois = ['Chicago', 'Aurora', 'Joliet', 'Naperville', 'Rockford', 'Springfield', 'Peoria', 'Elgin', 'Champaign', 'Waukegan', 'Cicero', 'Bloomington', 'Arlington Heights', 'Evanston', 'Bolingbrook', 'Schaumburg', 'Decatur'];
         this.#indiana = ['Indianapolis', 'Fort Wayne', 'Evansville', 'South Bend', 'Carmel', 'Fishers', 'Bloomington', 'Hammond', 'Gary', 'Lafayette', 'Muncie', 'Noblesville', 'Terre Haute', 'Kokomo', 'Greenwood'];
         this.#iowa = ['Des Moines', 'Cedar Rapids', 'Davenport', 'Sioux City', 'Iowa City', 'Waterloo', 'Ames', 'West Des Moines', 'Council Bluffs', 'Ankeny', 'Dubuque', 'Urbandale', 'Cedar Falls', 'Marion', 'Bettendorf'];
+        this.#kansas = ['Wichita', 'Overland Park', 'Kansas City', 'Olathe', 'Topeka', 'Lawrence', 'Shawnee', 'Manhattan', 'Lenexa', 'Salina'];
+        this.#kentucky = ['Lousiville', 'Lexington', 'Bowling Green', 'Owensboro', 'Covington', 'Richmond', 'Georgetown', 'Florence', 'Hopkinsville'];
+        this.#louisiana = ['New Orleans', 'Baton Rouge', 'Shreveport', 'Metairie', 'Lafatette', 'Lake Charles', 'Bossier City', 'Kenner', 'Monroe', 'Alexandria', 'Houma'];
+        this.#maine = ['Portland', 'Lewiston', 'Bangor', 'South Portland', 'Auburn', 'Biddeford', 'Sanford', 'Brunswick', 'Scarborough', 'Saco'];
+        this.#maryland = ['Baltimore', 'Columbia', 'Germantown', 'Silver Spring', 'Waldorf', 'Ellicott City', 'Fredrick', 'Glen Burnie', 'Gaithersburg', 'Rockville', 'Bethesda', 'Dundalk', 'Bowie'];
+        this.#mississippi = ['Jackson', 'Gulfport', 'Southaven', 'Hattiesburg', 'Biloxi', 'Tupelo', 'Meridian', 'Olive Branch', 'Greenville', 'Horn Lake'];
+        this.#missouri = ['Kansas City', 'St.Louis', 'Springfield', 'Columbia', 'Independence', 'Lee\'s Summit', 'O\'Fallon', 'St.Joseph', 'St.Charles', 'St.Peters', 'Blue Springs', 'Florissant', 'Joplin', 'Chesterfield', 'Jefferson City'];
+        this.#montana = ['Billings', 'Missoula', 'Great Falls', 'Bozeman', 'Butte-Silver Bow', 'Helena', 'Kalispell', 'Havre', 'Anaconda-Deer Lodge County', 'Belgrade'];
+        this.#nebraska = ['Omaha', 'Lincoln', 'Bellevue', 'Grand Island', 'Kearney', 'Fremont', 'Hastings', 'Norfolk', 'North Platte', 'Columbus', 'Papillion', 'La Vista'];
+        this.#nevada = ['Las Vegas', 'Henderson', 'Reno', 'North Las Vegas', 'Paradise', 'Sunrise Manor', 'Enterprise', 'Sparks', 'Carson City', 'Whitney', 'Pahrump', 'Winchester'];
+        this.#newHampshire = ['Manchester', 'Nashua', 'Concord', 'Derry', 'Dover', 'Rochester', 'Salem', 'Merrimack', 'Londonderry', 'Hudson', 'Keene'];
+        this.#newJersey = ['Newark', 'Jersey City', 'Paterson', 'Elizabeth', 'Lakewood', 'Edison', 'Woodbridge', 'Toms River', 'Hamilton Township', 'Clifton', 'Trenton', 'Brick', 'Camden', 'Cherry Hill', 'Passaic', 'Union City', 'Old Bridge', 'Franklin Township', 'Middletown', 'Bayonne', 'East Orange', 'Gloucester', 'Irvington'];
+        this.#newMexico = ['Albuquerque', 'Las Cruces', 'Rio Grande', 'Santa Fe', 'Roswell', 'Farmington', 'South Valley', 'Clovis', 'Hobbs', 'Alamogordo', 'Carlsbad', 'Gallup', 'Sunland Park', 'Los Lunas', 'Chaparral'];
+        this.#newYork = ['New York', 'Hempstead', 'Brookhaven', 'Islip', 'Oyster Bay', 'Buffalo', 'North Hempstead', 'Babylon', 'Rochester', 'Huntington', 'Yonkers', 'Syracuse', 'Ramapo', 'Amherst', 'Smithtown', 'Albany', 'Greece', 'Greenburgh', 'Clarkstown', 'Cheektowaga', 'Colonie', 'New Rochelle', 'Tonawanda Town', 'Mount Vernon', 'Schenectady', 'Utica', 'Clay'];
+        this.#northcarolina = ['Charlotte', 'Raleigh', 'Greensboro', 'Durham', 'Winston-Salem', 'Fayetteville', 'Cary', 'Wilmington', 'High Point', 'Concord', 'Greenville', 'Asheville', 'Gastonia', 'Jacksonville', 'Chapel Hill', 'Huntersville', 'Rocky Mount', 'Burlington', 'Apex', 'Wilson', 'Kannapolis', 'Wake Forest', 'Hickory', 'Indian Trail', 'Mooresville'];
 
         this.#cityMap = new Map();
     }
@@ -112,5 +127,23 @@ class CityMap {
         this.#cityMap.set('Illinois', this.#illinois);
         this.#cityMap.set('Indiana', this.#indiana);
         this.#cityMap.set('Iowa', this.#iowa);
+        this.#cityMap.set('Kansas', this.#kansas);
+        this.#cityMap.set('Kentucky', this.#kentucky);
+        this.#cityMap.set('Louisiana', this.#louisiana);
+        this.#cityMap.set('Maine', this.#maine);
+        this.#cityMap.set('Maryland', this.#maryland);
+        this.#cityMap.set('Massachusetts', this.#massachusetts);
+        this.#cityMap.set('Michigan', this.#michigan);
+        this.#cityMap.set('Minnesota', this.#minnesota);
+        this.#cityMap.set('Mississippi', this.#mississippi);
+        this.#cityMap.set('Missouri', this.#missouri);
+        this.#cityMap.set('Montana', this.#montana);
+        this.#cityMap.set('Nebraska', this.#nebraska);
+        this.#cityMap.set('Nevada', this.#nevada);
+        this.#cityMap.set('New Hampshire', this.#newHampshire);
+        this.#cityMap.set('New Jersey', this.#newJersey);
+        this.#cityMap.set('New Mexico', this.#newMexico);
+        this.#cityMap.set('New York', this.#newYork);
+        this.#cityMap.set('North Carolina', this.#northcarolina);
     }
 }
