@@ -2,3 +2,72 @@
 .text-white {
     text-decoration: none;
 }
+
+.locations-form-container section {
+    padding: 40px 40px 40px 100px;
+}
+
+#locations-map {
+    height: 600px;
+    width: 100%;
+}
+
+#locations-info-section {
+    width: 50%;
+    float: left;
+}
+
+.locate-me-container {
+    padding-top: 20px;
+    text-align: center;
+}
+
+#locate-me-button {
+    background-repeat: no-repeat;
+    background-color: cornflowerblue;
+    cursor: pointer;
+    border: 3px solid #000000;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 26px;
+    width: 200px;
+    height: 50px;
+}
+
+#locate-me-button:hover {
+    background-color: dodgerblue;
+}
+
+#locations-form-section {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.locations-form-border {
+    margin-left: 50%;
+    height: 200px;
+    border-right: 1px solid red;
+    position: absolute;
+}
+
+.locations-text-format {
+    font-family: LKLUG;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.locations-select-dropdown {
+    height: 40px;
+    width: 250px;
+    font-size: 18px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 12px;
+}
+
+#locations-state_label {
+    padding-bottom: 75px;
+}
