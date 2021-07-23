@@ -1,10 +1,12 @@
 const locationsPage = $(function () {
 
+    initMap();
+
     $stateSelected = $('#states');
     $cityList = $('#city');
 
-    let map = new CityMap('Alabama');
-    const states = map.getStates();
+    let selectMap = new CityMap('Alabama');
+    const states = selectMap.getStates();
     createStateOptions(states);
 
     /**
@@ -13,10 +15,22 @@ const locationsPage = $(function () {
     $stateSelected.click( function (e) {
         removeCurrentCities();
 
-        map.setState($stateSelected.val());
-        const cities = map.getCities(); 
+        selectMap.setState($stateSelected.val());
+        const cities = selectMap.getCities();
         appendCurrentCities(cities);
     });
+
+    function initMap() {
+        try {
+            var googleMap = new google.maps.Map(document.getElementById('locations-map'), {
+                center: {lat: -34.397, lng: 150.644},
+                zoom: 8,
+            });
+        } catch(error) {
+            // add some mark up, in the case, google maps does not load - how to handle?
+            console.log("Error: " + error);
+        }
+    }
 
     /**
      * Build states in form's option list.

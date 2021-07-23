@@ -13,6 +13,7 @@ const key = process.env.KEY;
 const fr = process.env.FR;
 const subs = process.env.SUBS;
 const cluster = process.env.CLUSTER;
+const googleapi = process.env.GOOGLEAPI;
 
 const uri = db + user + ":" + key + cluster;
 const client = new MongoClient(uri, {useUnifiedTopology: true});
@@ -39,6 +40,7 @@ exports.home = (request, response) => {
         title: 'Foster Awareness', 
         pageScript: '/javascripts/home.js',
         csrfToken: request.csrfToken,
+        hasGoogleMap: false,
     });
 }
 
@@ -49,6 +51,8 @@ exports.locations = (request, response) => response.render('locations', {
     title: 'Find Location',
     pageScript: '/javascripts/locations.js',
     csrfToken: request.csrfToken,
+    googleApi: googleapi,
+    hasGoogleMap: true,
 });
 
 exports.about = (request, response) => response.render('about', {
@@ -58,6 +62,7 @@ exports.about = (request, response) => response.render('about', {
     title: 'About Foster',
     pageScript: '/javascripts/about.js',
     csrfToken: request.csrfToken,
+    hasGoogleMap: false,
 });
 
 exports.notFound = (request, response) => response.render('404', { layout: false });
