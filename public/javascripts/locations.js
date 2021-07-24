@@ -97,13 +97,7 @@ const locationsPage = $(function () {
                 center: { lat: latitude, lng: longitude },
                 zoom: 8,
             });
-
-            // position user on map
-            let position1 = {
-                position: { lat: latitude, lng: longitude },
-                map: googleMap
-            };
-            let marker1 = new google.maps.Marker(position1);
+            markUserOnMap(latitude, longitude);
         } catch(error) {
             console.log('Error: ' + error)
         }
@@ -119,10 +113,14 @@ const locationsPage = $(function () {
             let geocoder = new google.maps.Geocoder();
             geocoder.geocode( { 'address' : city + ', ' + state }, function (results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
+                    let latitude = results[0].geometry.location.lat();
+                    let longitude = results[0].geometry.location.lng();
+
                     googleMap = new google.maps.Map(document.getElementById('locations-map'), {
-                        center: { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() },
+                        center: { lat: latitude, lng: longitude },
                         zoom: 8
                     });
+                    markUserOnMap(latitude, longitude);
                 } else {
                     // handle error
                     console.log('Error handling locate me with google map');
@@ -131,6 +129,19 @@ const locationsPage = $(function () {
         } catch (error) {
             console.log('Error fetching location using google geocoder!');
         }
+    }
+
+    /**
+     * Marks user on google map.
+     * @param latitude
+     * @param longitude
+     */
+    function markUserOnMap(latitude, longitude) {
+        let userPosition = {
+            position: { lat: latitude, lng: longitude },
+            map: googleMap
+        };
+        let userMarker = new google.maps.Marker(userPosition);
     }
 
     /**
