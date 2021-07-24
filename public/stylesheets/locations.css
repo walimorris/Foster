@@ -22,7 +22,7 @@
     text-align: center;
 }
 
-#locate-me-button {
+.locate-button {
     background-repeat: no-repeat;
     background-color: cornflowerblue;
     cursor: pointer;

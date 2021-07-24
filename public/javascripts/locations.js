@@ -4,7 +4,8 @@ const locationsPage = $(function () {
 
     $stateSelected = $('#states');
     $cityList = $('#city');
-    $locateMeButton = $('#locate-me-button');
+    $geoLocateMeButton = $('#geolocate-me-button');
+    $googleLocateMeButton = $('#googlelocate-me-button');
     $locateMeErrorMsg = $('#locate-me-error-msg');
 
     let selectMap = new CityMap('Alabama');
@@ -15,6 +16,7 @@ const locationsPage = $(function () {
      * updates city options on new state selection.
      */
     $stateSelected.click( function (e) {
+        console.log($cityList.val());
         removeCurrentCities();
 
         selectMap.setState($stateSelected.val());
@@ -25,8 +27,27 @@ const locationsPage = $(function () {
     /**
      * Uses internal HTML Geolocation on locate me button click.
      */
-    $locateMeButton.click( function (e) {
+    $geoLocateMeButton.click( function (e) {
         geoLocateMe();
+    });
+
+    /**
+     * Uses google maps api to locate user by city/state.
+     */
+    $googleLocateMeButton.click( function (e) {
+        e.preventDefault();
+        if ($stateSelected.val() !== null && $cityList.val() !== null) {
+            locateByCityState($cityList.val(), $stateSelected.val());
+        } else {
+            // handle with some info text
+            if ($stateSelected.val() === null) {
+                console.log('Please select state before submitting.');
+            } else if($cityList.val() === null) {
+                console.log('Please select city before submitting.');
+            } else {
+                console.log('Please select both city and state before submitting.');
+            }
+        }
     });
 
     /**
@@ -46,7 +67,7 @@ const locationsPage = $(function () {
      * @param pos
      */
     function writePosition(pos) {
-        locateMeOnMap(pos.coords.latitude, pos.coords.longitude);
+        locateByLatLong(pos.coords.latitude, pos.coords.longitude);
     }
 
     /**
@@ -70,7 +91,7 @@ const locationsPage = $(function () {
      * @param latitude
      * @param longitude
      */
-    function locateMeOnMap(latitude, longitude) {
+    function locateByLatLong(latitude, longitude) {
         try {
             googleMap = new google.maps.Map(document.getElementById('locations-map'), {
                 center: { lat: latitude, lng: longitude },
@@ -78,13 +99,37 @@ const locationsPage = $(function () {
             });
 
             // position user on map
-            var flag = 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png';
             let position1 = {
                 position: { lat: latitude, lng: longitude },
-                map: googleMap, icon: flag, title: 'You'
+                map: googleMap
             };
+            let marker1 = new google.maps.Marker(position1);
         } catch(error) {
             console.log('Error: ' + error)
+        }
+    }
+
+    /**
+     * Locates user with google maps api by supplying city/state.
+     * @param city
+     * @param state
+     */
+    function locateByCityState(city, state) {
+        try {
+            let geocoder = new google.maps.Geocoder();
+            geocoder.geocode( { 'address' : city + ', ' + state }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    googleMap = new google.maps.Map(document.getElementById('locations-map'), {
+                        center: { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() },
+                        zoom: 8
+                    });
+                } else {
+                    // handle error
+                    console.log('Error handling locate me with google map');
+                }
+            });
+        } catch (error) {
+            console.log('Error fetching location using google geocoder!');
         }
     }
 
