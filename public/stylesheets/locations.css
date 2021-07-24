@@ -36,7 +36,7 @@
     height: 50px;
 }
 
-#locate-me-button:hover {
+.locate-button:hover {
     background-color: dodgerblue;
 }
 
@@ -68,6 +68,11 @@
     border-radius: 12px;
 }
 
-#locations-state_label {
-    padding-bottom: 75px;
+#locations-state-label {
+    padding-bottom: 40px;
 }
+
+#locations-city-label {
+    padding-bottom: 50px;
+}
+
