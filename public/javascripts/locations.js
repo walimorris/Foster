@@ -111,7 +111,7 @@ const locationsPage = $(function () {
         try {
             let geocoder = new google.maps.Geocoder();
             geocoder.geocode( { 'address' : city + ', ' + state }, function (results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
+                if (status === google.maps.GeocoderStatus.OK && results) {
                     let latitude = results[0].geometry.location.lat();
                     let longitude = results[0].geometry.location.lng();
 
@@ -141,6 +141,38 @@ const locationsPage = $(function () {
             map: googleMap
         };
         let userMarker = new google.maps.Marker(userPosition);
+
+
+        // select foster agencies within radius of user
+        let request = {
+            location: { lat: latitude, lng: longitude},
+            radius: '500',
+            query: "Adoption",
+            fields: ["name", "geometry"],
+        };
+        var service = new google.maps.places.PlacesService(googleMap);
+        service.nearbySearch(request, (results, status) => {
+            if (status === google.maps.places.PlacesService.OK && results) {
+                for (let i = 0; i < results.length; i++) {
+                    let agencyPosition = {
+                        position: {
+                            lat: results[i].geometry.location.lat(),
+                            lng: results[i].geometry.location.lng(),
+                        }
+                    };
+                    let agencyMarker = new google.maps.Marker({
+                        googleMap,
+                        position: agencyPosition.position,
+                    });
+                }
+            } else if(!status === google.maps.places.PlacesService.OK) {
+                // error handling
+                console.log('Bad Google Places Query');
+            } else {
+                // no results handling
+                console.log('Empty results');
+            }
+        });
     }
 
     /**
