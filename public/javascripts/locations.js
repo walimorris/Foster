@@ -16,7 +16,6 @@ const locationsPage = $(function () {
      * updates city options on new state selection.
      */
     $stateSelected.click( function (e) {
-        console.log($cityList.val());
         removeCurrentCities();
 
         selectMap.setState($stateSelected.val());
@@ -71,21 +70,6 @@ const locationsPage = $(function () {
     }
 
     /**
-     * Initial loaded Google Map.
-     */
-    function initMap() {
-        try {
-            var googleMap = new google.maps.Map(document.getElementById('locations-map'), {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 8,
-            });
-        } catch(error) {
-            // add some mark up, in the case, google maps does not load - how to handle?
-            console.log("Error: " + error);
-        }
-    }
-
-    /**
      * Uses internal HTML Geolocation API to locate user on google maps. Also
      * finds the nearest foster/adoption agencies in the area.
      * @param latitude
@@ -100,6 +84,21 @@ const locationsPage = $(function () {
             markUserOnMap(latitude, longitude);
         } catch(error) {
             console.log('Error: ' + error)
+        }
+    }
+
+    /**
+     * Initial loaded Google Map.
+     */
+    function initMap() {
+        try {
+            var googleMap = new google.maps.Map(document.getElementById('locations-map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8,
+            });
+        } catch(error) {
+            // add some mark up, in the case, google maps does not load - how to handle?
+            console.log("Error: " + error);
         }
     }
 

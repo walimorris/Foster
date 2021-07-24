@@ -26,3 +26,4 @@ To get the node server running locally:
 * [morgan](https://github.com/expressjs/morgan) Lightweight middleware logger for node.js
 * [jest](https://jestjs.io/) A delightful JavaScript testing framework with a focus on simplicity
 * Special thanks to [Bootstrap](https://getbootstrap.com/) and [Font Awesome](https://fontawesome.com/start/confirm) for sharing features that make web apps pop.
+* [Google Map APIs](https://developers.google.com/maps) Used to handle our locations feature. [Geocoding](https://developers.google.com/maps/documentation/geocoding/start) / [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview) / [Places](https://developers.google.com/maps/documentation/places/web-service/overview) 
