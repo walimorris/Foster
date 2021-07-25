@@ -3,11 +3,20 @@
     text-decoration: none;
 }
 
+.locations-div-border {
+    height: 50px;
+}
+
+#top-div-border {
+    border-top: 2px solid #000000;
+}
+
 .locations-form-container section {
     padding: 40px 40px 40px 100px;
 }
 
 #locations-map {
+    border-top: 2px solid #000000;
     height: 600px;
     width: 100%;
 }
@@ -24,9 +33,8 @@
 
 .locate-button {
     background-repeat: no-repeat;
-    background-color: cornflowerblue;
+    background-color: #000000;
     cursor: pointer;
-    border: 3px solid #000000;
     text-align: center;
     text-decoration: none;
     border-radius: 12px;
@@ -48,8 +56,8 @@
 
 .locations-form-border {
     margin-left: 50%;
-    height: 200px;
-    border-right: 1px solid red;
+    height: 275px;
+    border-right: 2px solid #d3d3d3;
     position: absolute;
 }
 
@@ -61,14 +69,14 @@
 
 .locations-select-dropdown {
     height: 40px;
-    width: 250px;
+    width: 350px;
     font-size: 18px;
-    background-color: cornflowerblue;
-    color: white;
+    background-color: transparent;
+    color: #000000;
     border-radius: 12px;
 }
 
-#locations-state-label {
+#locations-state {
     padding-bottom: 40px;
 }
 
@@ -76,3 +84,6 @@
     padding-bottom: 50px;
 }
 
+#googlelocate-me-button {
+    margin-top: 50px;
+}

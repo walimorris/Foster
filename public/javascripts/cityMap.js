@@ -53,8 +53,8 @@ class CityMap {
     #wisconsin;
     #wyoming;
 
-    constructor(state) {
-        this.#state = state;
+    constructor() {
+        this.#state = 'Alabama';
         this.#alabama = ['Birmingham', 'Montgomery', 'Huntsville', 'Mobile', 'Tucaloosa'];
         this.#alaska = ['Anchorage', 'Juneau', 'Fairbanks', 'Badger', 'Knik-Fairview'];
         this.#arizona = ['Phoenix', 'Tucson', 'Mesa', 'Chandler', 'Scottsdale'];

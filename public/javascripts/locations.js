@@ -8,7 +8,8 @@ const locationsPage = $(function () {
     $googleLocateMeButton = $('#googlelocate-me-button');
     $locateMeErrorMsg = $('#locate-me-error-msg');
 
-    let selectMap = new CityMap('Alabama');
+    // Instantiate new CityMap Object and build city/state dropdown
+    let selectMap = new CityMap();
     const states = selectMap.getStates();
     buildStateDropDown(states);
 
@@ -194,7 +195,7 @@ const locationsPage = $(function () {
     }
 
     /**
-     * Build states in form's option list.
+     * Build's the state's dropdown options.
      * @param states
      */
     function buildStateDropDown(states) {
@@ -214,7 +215,7 @@ const locationsPage = $(function () {
     }
 
     /**
-     * Removes current list of cities from form.
+     * Removes the current list of cities from cities dropdown.
      */
     function removeCitiesFromDropDown() {
         $cityDropDown.empty();
