@@ -6,15 +6,16 @@ const locationsPage = $(function () {
     $cityDropDown = $('#city');
     $geoLocateMeButton = $('#geolocate-me-button');
     $googleLocateMeButton = $('#googlelocate-me-button');
-    $locateMeErrorMsg = $('#locate-me-error-msg');
 
     // error elements
     $googleLocateMeErrorElement = $('#googlelocate-me-error').hide();
+    $geoLocateMeErrorElement = $('#geolocate-me-error').hide();
 
     // error messages
-    const stateDropDownError = 'Please select state before submitting location';
-    const cityDropDownError = 'Please select city before submitting location';
-    const cityStateDropDownError = 'Please select city and state before submitting location';
+    const stateDropDownErrorMsg = 'Please select state before submitting location';
+    const cityDropDownErrorMsg = 'Please select city before submitting location';
+    const cityStateDropDownErrorMsg = 'Please select city and state before submitting location';
+    const geoLocateErrorMsg = 'Geolocation functionality unavailable, please select city and state';
 
     // Instantiate new CityMap Object and build city/state dropdown
     let selectMap = new CityMap();
@@ -58,22 +59,22 @@ const locationsPage = $(function () {
             }
         } else {
             if ($stateDropDown.val() === null) {
-                showDropDownError($googleLocateMeErrorElement, stateDropDownError);
+                showLocateMeError($googleLocateMeErrorElement, stateDropDownErrorMsg);
             } else if($cityDropDown.val() === null) {
-                showDropDownError($googleLocateMeErrorElement, cityDropDownError);
+                showLocateMeError($googleLocateMeErrorElement, cityDropDownErrorMsg);
             } else {
-                showDropDownError($googleLocateMeErrorElement, cityStateDropDownError);
+                showLocateMeError($googleLocateMeErrorElement, cityStateDropDownErrorMsg);
             }
         }
     });
 
     /**
-     * Handles error message when google locate me button dropdown city or state are
-     * not correctly selected.
+     * Handles error message when either geo locate or google locate elements can not
+     * handle location request.
      * @param locateMeErrorElement
      * @param errorMsg
      */
-    function showDropDownError(locateMeErrorElement, errorMsg) {
+    function showLocateMeError(locateMeErrorElement, errorMsg) {
         locateMeErrorElement.text(errorMsg);
         locateMeErrorElement.css('color', 'red');
         if (locateMeErrorElement.hide()) {
@@ -88,9 +89,12 @@ const locationsPage = $(function () {
      */
     function geoLocateMe() {
         if (navigator.geolocation) {
+            if ($geoLocateMeErrorElement.show()) {
+                $geoLocateMeErrorElement.hide();
+            }
             navigator.geolocation.getCurrentPosition(writePosition);
         } else {
-            $locateMeErrorMsg.text('Geolocating not supported');
+            showLocateMeError($geoLocateMeErrorElement, geoLocateErrorMsg);
         }
     }
 

@@ -1,5 +1,4 @@
 const emailSubscriptions = $(function () {
-    "use strict"
 
     const _id = 'id';
     const _nocolor = 'rgba(0, 0, 0, 0)';
