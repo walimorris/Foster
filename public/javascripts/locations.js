@@ -8,6 +8,14 @@ const locationsPage = $(function () {
     $googleLocateMeButton = $('#googlelocate-me-button');
     $locateMeErrorMsg = $('#locate-me-error-msg');
 
+    // error elements
+    $googleLocateMeErrorElement = $('#googlelocate-me-error').hide();
+
+    // error messages
+    const stateDropDownError = 'Please select state before submitting location';
+    const cityDropDownError = 'Please select city before submitting location';
+    const cityStateDropDownError = 'Please select city and state before submitting location';
+
     // Instantiate new CityMap Object and build city/state dropdown
     let selectMap = new CityMap();
     const states = selectMap.getStates();
@@ -45,17 +53,33 @@ const locationsPage = $(function () {
         e.preventDefault();
         if ($stateDropDown.val() !== null && $cityDropDown.val() !== null) {
             locateByCityState($cityDropDown.val(), $stateDropDown.val());
+            if ($googleLocateMeErrorElement.show()) {
+                $($googleLocateMeErrorElement).hide();
+            }
         } else {
-            // handle with some info text
             if ($stateDropDown.val() === null) {
-                console.log('Please select state before submitting.');
+                showDropDownError($googleLocateMeErrorElement, stateDropDownError);
             } else if($cityDropDown.val() === null) {
-                console.log('Please select city before submitting.');
+                showDropDownError($googleLocateMeErrorElement, cityDropDownError);
             } else {
-                console.log('Please select both city and state before submitting.');
+                showDropDownError($googleLocateMeErrorElement, cityStateDropDownError);
             }
         }
     });
+
+    /**
+     * Handles error message when google locate me button dropdown city or state are
+     * not correctly selected.
+     * @param locateMeErrorElement
+     * @param errorMsg
+     */
+    function showDropDownError(locateMeErrorElement, errorMsg) {
+        locateMeErrorElement.text(errorMsg);
+        locateMeErrorElement.css('color', 'red');
+        if (locateMeErrorElement.hide()) {
+            locateMeErrorElement.show();
+        }
+    }
 
     /**
      * Utilizing HTML's Geolocation API, if it's supported, {@link getCurrentPosition}

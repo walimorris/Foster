@@ -87,3 +87,7 @@
 #googlelocate-me-button {
     margin-top: 50px;
 }
+
+#googlelocate-me-error {
+    padding-top: 10px;
+}
