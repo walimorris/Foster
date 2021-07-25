@@ -2,46 +2,53 @@ const locationsPage = $(function () {
 
     initMap();
 
-    $stateSelected = $('#states');
-    $cityList = $('#city');
+    $stateDropDown = $('#states');
+    $cityDropDown = $('#city');
     $geoLocateMeButton = $('#geolocate-me-button');
     $googleLocateMeButton = $('#googlelocate-me-button');
     $locateMeErrorMsg = $('#locate-me-error-msg');
 
     let selectMap = new CityMap('Alabama');
     const states = selectMap.getStates();
-    createStateOptions(states);
+    buildStateDropDown(states);
 
     /**
-     * updates city options on new state selection.
+     * Removes current cities appened to cities dropdown, and appends new
+     * cities to cities dropdown based on selected state from state
+     * dropdown.
      */
-    $stateSelected.click( function (e) {
-        removeCurrentCities();
+    $stateDropDown.click( function (e) {
+        removeCitiesFromDropDown();
 
-        selectMap.setState($stateSelected.val());
+        selectMap.setState($stateDropDown.val());
         const cities = selectMap.getCities();
-        appendCurrentCities(cities);
+        appendCitiesToDropDown(cities);
     });
 
     /**
-     * Uses internal HTML Geolocation on locate me button click.
+     * When GeoLocate me button is clicked on locations pages, HTML's
+     * internal Geolocation API is used to locate the user.
      */
     $geoLocateMeButton.click( function (e) {
         geoLocateMe();
     });
 
     /**
-     * Uses google maps api to locate user by city/state.
+     * When city and state are selected from respective dropdown and the locate
+     * button is clicked on locations page, the city/state is collected, and
+     * passed to {@link locateByCityState} and utilizing google maps API to
+     * mark user location.
+     *
      */
     $googleLocateMeButton.click( function (e) {
         e.preventDefault();
-        if ($stateSelected.val() !== null && $cityList.val() !== null) {
-            locateByCityState($cityList.val(), $stateSelected.val());
+        if ($stateDropDown.val() !== null && $cityDropDown.val() !== null) {
+            locateByCityState($cityDropDown.val(), $stateDropDown.val());
         } else {
             // handle with some info text
-            if ($stateSelected.val() === null) {
+            if ($stateDropDown.val() === null) {
                 console.log('Please select state before submitting.');
-            } else if($cityList.val() === null) {
+            } else if($cityDropDown.val() === null) {
                 console.log('Please select city before submitting.');
             } else {
                 console.log('Please select both city and state before submitting.');
@@ -50,7 +57,9 @@ const locationsPage = $(function () {
     });
 
     /**
-     * Uses internal HTML Geolocation API if it's supported.
+     * Utilizing HTML's Geolocation API, if it's supported, {@link getCurrentPosition}
+     * and passes {@link writePosition} to locate latitude and longitude of user's
+     * position.
      */
     function geoLocateMe() {
         if (navigator.geolocation) {
@@ -61,8 +70,8 @@ const locationsPage = $(function () {
     }
 
     /**
-     * Updates ininitial Google Map to user location after clicking Locate Me button
-     * and uses internal HTML Geolocation API.
+     * Utilizing HTML's Geolocation API and {@link getCurrentPosition} to pass user's
+     * current latitiude and longitude to {@link locateByLatLong}.
      * @param pos
      */
     function writePosition(pos) {
@@ -70,8 +79,7 @@ const locationsPage = $(function () {
     }
 
     /**
-     * Uses internal HTML Geolocation API to locate user on google maps. Also
-     * finds the nearest foster/adoption agencies in the area.
+     * Uses latitude and longitude of user's current position to mark google maps.
      * @param latitude
      * @param longitude
      */
@@ -103,7 +111,8 @@ const locationsPage = $(function () {
     }
 
     /**
-     * Locates user with google maps api by supplying city/state.
+     * Receives user's city/state from respective dropdowns, queries google maps
+     * geocoder API to find location by city/state, and mark user on map.
      * @param city
      * @param state
      */
@@ -131,19 +140,28 @@ const locationsPage = $(function () {
     }
 
     /**
-     * Marks user on google map.
+     * Marks user on google map by supplied latitude and longitude. Passes lat/long
+     * to {@link markFosterAgenciesInRadius} to mark foster agencies in user's
+     * radius.
      * @param latitude
      * @param longitude
      */
     function markUserOnMap(latitude, longitude) {
         let userPosition = {
-            position: { lat: latitude, lng: longitude },
+            position: {lat: latitude, lng: longitude},
             map: googleMap
         };
         let userMarker = new google.maps.Marker(userPosition);
+        markFosterAgenciesInRadius(latitude, longitude);
+    }
 
-
-        // select foster agencies within radius of user
+    /**
+     * Marks results of Adoption and Foster agencies in radius of user's
+     * current latitude and longitude.
+     * @param latitude
+     * @param longitude
+     */
+    function markFosterAgenciesInRadius(latitude, longitude) {
         let request = {
             location: { lat: latitude, lng: longitude},
             radius: '500',
@@ -179,9 +197,9 @@ const locationsPage = $(function () {
      * Build states in form's option list.
      * @param states
      */
-    function createStateOptions(states) {
+    function buildStateDropDown(states) {
         states.forEach( function (state) {
-            $stateSelected.append('<option>' + state + '</option>');
+            $stateDropDown.append('<option>' + state + '</option>');
         });
     }
 
@@ -189,16 +207,16 @@ const locationsPage = $(function () {
      * Appends a list of cities based on State selection.
      * @param cities
      */
-    function appendCurrentCities(cities) {
+    function appendCitiesToDropDown(cities) {
         cities.forEach( function (city) {
-            $cityList.append('<option>' + city + '</option>');
+            $cityDropDown.append('<option>' + city + '</option>');
         });
     }
 
     /**
      * Removes current list of cities from form.
      */
-    function removeCurrentCities() {
-        $cityList.empty();
+    function removeCitiesFromDropDown() {
+        $cityDropDown.empty();
     }
 });
