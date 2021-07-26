@@ -17,6 +17,10 @@ const locationsPage = $(function () {
     const cityStateDropDownErrorMsg = 'Please select city and state before submitting location';
     const geoLocateErrorMsg = 'Geolocation functionality unavailable, please select city and state';
 
+    // icons
+    const youIcon = "https://img.icons8.com/doodle/48/000000/street-view.png";
+    const agencyIcon = "https://img.icons8.com/office/16/000000/department.png";
+
     // Instantiate new CityMap Object and build city/state dropdown
     let selectMap = new CityMap();
     const states = selectMap.getStates();
@@ -116,7 +120,7 @@ const locationsPage = $(function () {
         try {
             googleMap = new google.maps.Map(document.getElementById('locations-map'), {
                 center: { lat: latitude, lng: longitude },
-                zoom: 8,
+                zoom: 15,
             });
             markUserOnMap(latitude, longitude);
         } catch(error) {
@@ -155,7 +159,7 @@ const locationsPage = $(function () {
 
                     googleMap = new google.maps.Map(document.getElementById('locations-map'), {
                         center: { lat: latitude, lng: longitude },
-                        zoom: 8
+                        zoom: 15
                     });
                     markUserOnMap(latitude, longitude);
                 } else {
@@ -176,11 +180,11 @@ const locationsPage = $(function () {
      * @param longitude
      */
     function markUserOnMap(latitude, longitude) {
-        let userPosition = {
-            position: {lat: latitude, lng: longitude},
-            map: googleMap
-        };
-        let userMarker = new google.maps.Marker(userPosition);
+        let userMarker = new google.maps.Marker({
+            position: { lat: latitude, lng: longitude },
+            icon: youIcon,
+        });
+        userMarker.setMap(googleMap);
         markFosterAgenciesInRadius(latitude, longitude);
     }
 
@@ -194,25 +198,19 @@ const locationsPage = $(function () {
         let request = {
             location: { lat: latitude, lng: longitude},
             radius: '500',
-            query: "Adoption",
-            fields: ["name", "geometry"],
+            query: 'Adoption Agency'
         };
         var service = new google.maps.places.PlacesService(googleMap);
         service.nearbySearch(request, (results, status) => {
-            if (status === google.maps.places.PlacesService.OK && results) {
+            if (status === 'OK') {
                 for (let i = 0; i < results.length; i++) {
-                    let agencyPosition = {
-                        position: {
-                            lat: results[i].geometry.location.lat(),
-                            lng: results[i].geometry.location.lng(),
-                        }
-                    };
                     let agencyMarker = new google.maps.Marker({
-                        googleMap,
-                        position: agencyPosition.position,
+                        position: results[i].geometry.location,
+                        icon: agencyIcon,
                     });
+                    agencyMarker.setMap(googleMap);
                 }
-            } else if(!status === google.maps.places.PlacesService.OK) {
+            } else if(!status === 'OK') {
                 // error handling
                 console.log('Bad Google Places Query');
             } else {
