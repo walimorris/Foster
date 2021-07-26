@@ -24,7 +24,7 @@ app.use(csrf());
 app.use(bodyParser.json());
 app.use(express.json());
 
-// Disable s-powered-by deader
+// Disable x-powered-by
 app.disable('x-powered-by');
 app.set('view cache', true);
 

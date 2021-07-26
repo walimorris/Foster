@@ -18,10 +18,12 @@ const locationsPage = $(function () {
     const geoLocateErrorMsg = 'Geolocation functionality unavailable, please select city and state';
 
     // icons
-    const youIcon = "https://img.icons8.com/doodle/48/000000/street-view.png";
-    const agencyIcon = "https://img.icons8.com/office/16/000000/department.png";
+    const you = "https://img.icons8.com/doodle/48/000000/street-view.png";
+    const agency = "https://img.icons8.com/office/16/000000/department.png";
 
-    // Instantiate new CityMap Object and build city/state dropdown
+    // search terms for family agencies
+    const agencySearchTerms = [/family/i, /care/i, /foster/i, /adoption/i, /daycare/i, /childcare/i,/child services/i, /children/i];
+
     let selectMap = new CityMap();
     const states = selectMap.getStates();
     buildStateDropDown(states);
@@ -182,7 +184,7 @@ const locationsPage = $(function () {
     function markUserOnMap(latitude, longitude) {
         let userMarker = new google.maps.Marker({
             position: { lat: latitude, lng: longitude },
-            icon: youIcon,
+            icon: you
         });
         userMarker.setMap(googleMap);
         markFosterAgenciesInRadius(latitude, longitude);
@@ -204,11 +206,13 @@ const locationsPage = $(function () {
         service.nearbySearch(request, (results, status) => {
             if (status === 'OK') {
                 for (let i = 0; i < results.length; i++) {
-                    let agencyMarker = new google.maps.Marker({
-                        position: results[i].geometry.location,
-                        icon: agencyIcon,
-                    });
-                    agencyMarker.setMap(googleMap);
+                    if (isAgencyMatch(results[i].name)) {
+                        let agencyMarker = new google.maps.Marker({
+                            position: results[i].geometry.location,
+                            icon: agency,
+                        });
+                        agencyMarker.setMap(googleMap);
+                    }
                 }
             } else if(!status === 'OK') {
                 // error handling
@@ -218,6 +222,21 @@ const locationsPage = $(function () {
                 console.log('Empty results');
             }
         });
+    }
+
+    /**
+     * Finds family centered agencies within radius of user's chosen location based
+     * on global agencySearchTerms array.
+     * @param result
+     * @returns {boolean}
+     */
+    function isAgencyMatch(result) {
+        for(let i = 0; i < agencySearchTerms.length; i++) {
+            if (result.match(agencySearchTerms[i]) !== null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
