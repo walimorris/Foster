@@ -212,6 +212,7 @@ const locationsPage = $(function () {
                             icon: agency,
                         });
                         agencyMarker.setMap(googleMap);
+                        createMarkerInfoWindow(results[i], agencyMarker);
                     }
                 }
             } else if(!status === 'OK') {
@@ -221,6 +222,55 @@ const locationsPage = $(function () {
                 // no results handling
                 console.log('Empty results');
             }
+        });
+    }
+
+    /**
+     * Creates an InfoWindow for places result.
+     * @param result
+     * @param marker
+     */
+    async function createMarkerInfoWindow(result, marker) {
+        // build content from result
+        console.log(result);
+        const detailedArray = await getResultDetails(result.place_id);
+        const windowContent =
+            '<h6>' + result.name + '</h6><br/>' +
+            '<h6>' + result.vicinity + '</h6><br/>' +
+            '<h6>' + detailedArray.length + '</h6><br/>' +
+            '<h6>' + detailedArray.length + '</h6><br/>';
+
+        const infoWindow = new google.maps.InfoWindow({
+            content: windowContent,
+        });
+        console.log(detailedArray);
+
+        marker.addListener('click', () => {
+            infoWindow.open({
+                anchor: marker,
+                googleMap,
+                shouldFocus: false,
+            });
+        });
+    }
+
+    async function getResultDetails(id) {
+        const request = {
+            placeId: id
+        }
+        const array = [];
+        const service = new google.maps.places.PlacesService(googleMap);
+        service.getDetails(request, (place, status) => {
+            if (status === 'OK') {
+                array.push(place.website);
+                array.push(place.formatted_phone_number);
+            } else {
+                // error handling
+                console.log('Error receiving detailed results');
+            }
+        });
+        return new Promise(resolve => {
+            resolve(array);
         });
     }
 
