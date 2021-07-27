@@ -230,7 +230,7 @@ const locationsPage = $(function () {
      * @param result
      * @param marker
      */
-    async function createMarkerInfoWindow(result, marker) {
+    function createMarkerInfoWindow(result, marker) {
         // build content from result
         console.log(result);
 
