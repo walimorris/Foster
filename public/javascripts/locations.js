@@ -233,46 +233,36 @@ const locationsPage = $(function () {
     async function createMarkerInfoWindow(result, marker) {
         // build content from result
         console.log(result);
-        const detailedArray = await getResultDetails(result.place_id);
-        const windowContent =
-            '<h6>' + result.name + '</h6><br/>' +
-            '<h6>' + result.vicinity + '</h6><br/>' +
-            '<h6>' + detailedArray.length + '</h6><br/>' +
-            '<h6>' + detailedArray.length + '</h6><br/>';
 
-        const infoWindow = new google.maps.InfoWindow({
-            content: windowContent,
-        });
-        console.log(detailedArray);
-
-        marker.addListener('click', () => {
-            infoWindow.open({
-                anchor: marker,
-                googleMap,
-                shouldFocus: false,
-            });
-        });
-    }
-
-    async function getResultDetails(id) {
         const request = {
-            placeId: id
+            placeId: result.place_id,
         }
-        const array = [];
         const service = new google.maps.places.PlacesService(googleMap);
         service.getDetails(request, (place, status) => {
             if (status === 'OK') {
-                array.push(place.website);
-                array.push(place.formatted_phone_number);
-            } else {
-                // error handling
-                console.log('Error receiving detailed results');
+                const phone = place.formatted_phone_number === undefined ? 'N/A' : place.formatted_phone_number;
+                const website = place.website === undefined ? 'N/A' : place.website;
+                const windowContent =
+                    '<h6>' + result.name + '</h6><br/>' +
+                    '<h6>' + result.vicinity + '</h6><br/>' +
+                    '<h6>' + phone + '</h6><br/>' +
+                    '<h6>' + website + '</h6>';
+                    // '<a href="' + place.website + '">Website</a><br/>';
+
+                const infoWindow = new google.maps.InfoWindow({
+                    content: windowContent
+                });
+
+                marker.addListener('click', () => {
+                    infoWindow.open({
+                        anchor: marker,
+                        googleMap,
+                        shouldFocus: false,
+                    });
+                });
             }
         });
-        return new Promise(resolve => {
-            resolve(array);
-        });
-    }
+    };
 
     /**
      * Finds family centered agencies within radius of user's chosen location based
