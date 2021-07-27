@@ -4,7 +4,7 @@
 }
 
 .locations-div-border {
-    height: 50px;
+    height: 5px;
 }
 
 #top-div-border {
@@ -12,7 +12,7 @@
 }
 
 .locations-form-container section {
-    padding: 40px 40px 40px 100px;
+    padding: 5px 5px 5px;
 }
 
 #locations-map {
@@ -27,7 +27,6 @@
 }
 
 .locate-me-container {
-    padding-top: 20px;
     text-align: center;
 }
 
@@ -65,11 +64,6 @@
     font-family: LKLUG;
     font-size: 18px;
     font-weight: bold;
-}
-
-#geolocation-text-format {
-    border: 8px solid #d3d3d3;
-    padding: 15px;
 }
 
 .locations-select-dropdown {
