@@ -240,14 +240,19 @@ const locationsPage = $(function () {
         const service = new google.maps.places.PlacesService(googleMap);
         service.getDetails(request, (place, status) => {
             if (status === 'OK') {
+                const blank = '_blank';
                 const phone = place.formatted_phone_number === undefined ? 'N/A' : place.formatted_phone_number;
                 const website = place.website === undefined ? 'N/A' : place.website;
+
+                let websiteLink = '<h6><a target="' + blank + '" href="' + website + '">Website</a></h6><br/>';
+                if (website === 'N/A') {
+                    websiteLink = '<h6>' + 'N/A' + '</h6>';
+                }
                 const windowContent =
                     '<h6>' + result.name + '</h6><br/>' +
                     '<h6>' + result.vicinity + '</h6><br/>' +
                     '<h6>' + phone + '</h6><br/>' +
-                    '<h6>' + website + '</h6>';
-                    // '<a href="' + place.website + '">Website</a><br/>';
+                    websiteLink;
 
                 const infoWindow = new google.maps.InfoWindow({
                     content: windowContent
