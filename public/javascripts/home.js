@@ -23,4 +23,8 @@ const homepage = $(function () {
                 .css(_border, tourCtaButtonBorder);
         });
     });
+
+    $('#tour-cta-button').click(function () {
+        window.location.href = 'http://localhost:3000/locations';
+    });
 });

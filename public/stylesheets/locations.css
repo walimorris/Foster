@@ -67,6 +67,11 @@
     font-weight: bold;
 }
 
+#geolocation-text-format {
+    border: 8px solid #d3d3d3;
+    padding: 15px;
+}
+
 .locations-select-dropdown {
     height: 40px;
     width: 350px;
