@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/walimorris/Foster.svg?branch=master)](https://app.travis-ci.com/walimorris/Foster)
+
 # Foster Awareness Website
 > Our future looks bright. Progress continues to happen on the technology front, 
 > education front, and social front. Foster aware is built to deliver more attention
