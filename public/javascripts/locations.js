@@ -1,11 +1,11 @@
 const locationsPage = $(function () {
 
-    initMap();
-
     $stateDropDown = $('#states');
     $cityDropDown = $('#city');
     $geoLocateMeButton = $('#geolocate-me-button');
     $googleLocateMeButton = $('#googlelocate-me-button');
+    $formBorder = $('#form-border');
+    $locationsSection = $('#locations-info-section');
 
     // error elements
     $googleLocateMeErrorElement = $('#googlelocate-me-error').hide();
@@ -24,9 +24,24 @@ const locationsPage = $(function () {
     // search terms for family agencies
     const agencySearchTerms = [/family/i, /care/i, /foster/i, /adoption/i, /daycare/i, /childcare/i,/child services/i, /children/i];
 
+    initMap();
+    setLocationsFormBorder();
+
     let selectMap = new CityMap();
     const states = selectMap.getStates();
     buildStateDropDown(states);
+
+    $(window).resize(function() {
+        setLocationsFormBorder();
+    });
+
+    /**
+     * Resizes locations form border element based on size of the section element
+     * that contains the locations feature and form.
+     */
+    function setLocationsFormBorder() {
+        $formBorder.css('height', $locationsSection.height() - 20);
+    }
 
     /**
      * Removes current cities appened to cities dropdown, and appends new
