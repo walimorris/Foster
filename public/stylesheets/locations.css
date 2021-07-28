@@ -24,6 +24,7 @@
 #locations-info-section {
     width: 50%;
     float: left;
+    padding: 15px 85px;
 }
 
 .locate-me-container {
@@ -51,6 +52,7 @@
     width: 50%;
     height: 100%;
     float: left;
+    padding: 15px 85px;
 }
 
 .locations-form-border {
@@ -58,6 +60,14 @@
     height: 275px;
     border-right: 2px solid #d3d3d3;
     position: absolute;
+}
+
+#geolocations-text-format {
+    font-size: 26px;
+}
+
+#geo-bold {
+    color: dodgerblue;
 }
 
 .locations-text-format {
@@ -85,6 +95,10 @@
 
 #googlelocate-me-button {
     margin-top: 50px;
+}
+
+#googlelocate-info {
+    padding-top: 20px;
 }
 
 #googlelocate-me-error {
