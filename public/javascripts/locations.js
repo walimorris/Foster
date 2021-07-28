@@ -76,7 +76,7 @@ const locationsPage = $(function () {
         if ($stateDropDown.val() !== null && $cityDropDown.val() !== null) {
             locateByCityState($cityDropDown.val(), $stateDropDown.val());
             if ($googleLocateMeErrorElement.show()) {
-                $($googleLocateMeErrorElement).hide();
+                $googleLocateMeErrorElement.hide();
             }
         } else {
             if ($stateDropDown.val() === null) {
