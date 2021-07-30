@@ -27,6 +27,10 @@
     padding: 5px 85px;
 }
 
+#geolocation-info-text {
+    font-size: 16px;
+}
+
 .locate-me-container {
     text-align: center;
 }
@@ -86,6 +90,12 @@
 
 #locations-state {
     padding-bottom: 40px;
+}
+
+#locations-map {
+    border: 5px solid #ccc;
+    margin: auto;
+    padding: 15px 10px;
 }
 
 #locations-city-label {
