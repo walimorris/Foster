@@ -22,7 +22,8 @@ const locationsPage = $(function () {
     const agency = "https://img.icons8.com/office/16/000000/department.png";
 
     // search terms for family agencies
-    const agencySearchTerms = [/family/i, /care/i, /foster/i, /adoption/i, /daycare/i, /childcare/i,/child services/i, /children/i];
+    const agencySearchTerms = [/family/i, /care/i, /foster/i, /adoption/i, /daycare/i, /childcare/i,/child services/i, /children/i, +
+                               /human/i, /rights/i, /human rights/i];
 
     initMap();
     setLocationsFormBorder();
@@ -180,12 +181,19 @@ const locationsPage = $(function () {
                     });
                     markUserOnMap(latitude, longitude);
                 } else {
-                    // handle error
-                    console.log('Error handling locate me with google map');
+                    // handle bad status, no results.
+                    if (!status === 'OK') {
+                        console.log('Bad return status');
+                    } else {
+                        if (!results) {
+                            console.log('no results from query');
+                        }
+                    }
                 }
             });
-        } catch (error) {
-            console.log('Error fetching location using google geocoder!');
+        } catch (e) {
+            console.error(e);
+            initMap();
         }
     }
 
@@ -220,6 +228,7 @@ const locationsPage = $(function () {
         var service = new google.maps.places.PlacesService(googleMap);
         service.nearbySearch(request, (results, status) => {
             if (status === 'OK') {
+                console.log(results);
                 for (let i = 0; i < results.length; i++) {
                     if (isAgencyMatch(results[i].name)) {
                         let agencyMarker = new google.maps.Marker({
