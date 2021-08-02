@@ -10,4 +10,7 @@ notifications:
 deploy:
   provider: heroku
   api_key:
-    secure: $HEROKU_AUTH_TOKEN
+    secure: "$HEROKU_AUTH_TOKEN"
+env:
+  global:
+    secure: EE2z9gZsEdclSTMHPBs2HMregvvzcW6sDB0FtAGaE/IW06hBJ7XoEzwC0e00uEI7WxCTibT+Rj/bDGNzsB2WQbN6OphY6lIIUJ+RPLe0IYctW8mCqp2GD9b83NFg6Ra4fz2ClX1NiNpBqAYxIFr/jxa8ewqeTkYoqJKpTA35/8oCKsF+AVwhH6+dMXqyTwTElvfk4RoVReKPL4J/xz3UVFDbfhe9NqQfJThpdQr4JBd5NUsomrhYhSSwr9IItyOW0QMWhUqjXjFMoyCeyk/3HxckCgUL7T6mPo/CyW/hOvSFQXFdjTMok2dzwr3S1asHZb410B84u6QFSMZjnWdfGNOUEsMrDlHOTIuVOt2TH8J5ki9kIsaROnQ2bwOK4e2Oqm2kSH5gGpDgZFPcAOEH1fhxuUvdyz6JBZmB1Vw4hrM4jYgqul53FMj7plbB23ZXyZeHhEP2J1h+AKy8sPbehtzz7Px5nPj+FjVqh3iZ5lTLe2wjf35Ah9mMPDKdR5JzKF2tjxFFV1Tboy9dcPnvbZp+VGf+sr+e54ruVlwjG5CeSqIrCpTUgXo9mnp9d7RXremB3G2sbWotLAyhrrpJOPSvRTLYL5ybc9FnvfTKfYreYmo964z5XS+WNo+DoZF/B6QYgpNHALjpm0Pm94/VblICnyjl3arZlLwK1N260Gc=
