@@ -1,0 +1,19 @@
+.not-found-error-container {
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.not-found-error-message-container {
+    display: flex;
+    justify-content: center;
+    color: #d3d3d3;
+}
+
+#not-found-extended-message {
+    color: dimgray;
+}
+
+#not-found-number {
+    font-size: 100px;
+}
