@@ -10,4 +10,4 @@ notifications:
 deploy:
   provider: heroku
   api_key:
-    secure: $HTOKEN
+    secure: HTOKEN
