@@ -9,5 +9,6 @@ notifications:
     on_failure: always
 deploy:
   provider: heroku
-  api_key:
-    secure: HTOKEN
+env:
+  global:
+    secure: cwTfHxIMK1g+hXrok//i/vsWu1jHNk0ytTBEuzdYu6VyK+22ODQJ03FtllgI/jECPpFphdvOsf82BoQHjlssiTRQ+TiUsz5JcNNtF3xeCh1fXAPBoOLNfxPBhdktfqFqgHGGpCouQPbMfuT9hbwrYZXNPzi87VNlUt0m9KV3NBnsrnadlpchikV+lTNflC6yAXsXnWv+amCVM6JC29cLSedk/vVz+Ypx/2W+DSoYnxZooth7VJMvdE0PjwxpBKpuOlRXGNEEBNsm6VGI3NF0GjABGrSJoZtLsWf7VC99giRPd8gpn6NNFYH6mz/0lFYmkbewd1LIBj++9/cgjl4woAOWxZ2Ua9GV1/arlxi7LnEfa3j22CyDAGqC/Kg5T5AscETZ9HQortOzFcAOSyJoC7Zu9E5Fxq8C+ryaEKzCwzwMMq2rII6gbGxc7kDYYYIMhZim3cWfsRwKvqPWfwf9GN0NO5f5WXHvsLtIxjiFYHotTWkSIYFuBtdnY4lNFgXcJGMSYemhj4xrtNIsjiGZ7sl4FbuTpwvmnFoJtZf99v7T5Q+xaj+l75py7nhZ4CM95Mf0ZEY5VED3ExyrmlSM7g3iOQM0t/GcscaO5LkxBGDzSQbAjhSTIqHSp4997Td9EBY1oFMOXTLdWHIquq94uV9+a1dSYEf40X1UxxEKk0M=
