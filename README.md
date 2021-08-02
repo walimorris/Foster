@@ -24,7 +24,7 @@ To get the node server running locally:
 * [handlebars](https://handlebarsjs.com/guide/#what-is-handlebars) Templating engine used to work with dynamic data
 * [nodemon](https://nodemon.io/) Monitors and implements development changes, no server restart required
 * [Travis CI](https://travis-ci.org/) Handles CI in CI/CD pipeline
-* [Heroku] (https://dashboard.heroku.com/) Handles CD in CI/CD pipeline
+* [Heroku](https://dashboard.heroku.com/) Handles CD in CI/CD pipeline
 * [mongodb](https://www.mongodb.com/) Database
 * [morgan](https://github.com/expressjs/morgan) Lightweight middleware logger for node.js
 * [jest](https://jestjs.io/) A delightful JavaScript testing framework with a focus on simplicity
