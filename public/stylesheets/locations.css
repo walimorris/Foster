@@ -3,6 +3,10 @@
     text-decoration: none;
 }
 
+body {
+    padding: 15px 40px;
+}
+
 .locations-div-border {
     height: 55px;
 }
@@ -93,9 +97,8 @@
 }
 
 #locations-map {
-    border: 5px solid #ccc;
+    border: 50px solid #212529;
     margin: auto;
-    padding: 15px 10px;
 }
 
 #locations-city-label {

@@ -1,10 +1,9 @@
 body {
-    background-color: whitesmoke;
+    padding: 15px 40px;
 }
 
 .top-cta-container {
     position: relative;
-    border: 10px solid #ffffff;
 }
 
 .top-cta-container img {
@@ -13,6 +12,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    border: 10px solid #000;
 }
 
 #foster-group-image {
@@ -96,12 +96,12 @@ ul {
 }
 
 #news_section_1 {
-    height: 39.5%;
+    height: 37.5%;
 }
 
 #news_section_2 {
     margin-top: 130px;
-    height: 39.5%;
+    height: 37.5%;
 }
 
 .foster_news img {

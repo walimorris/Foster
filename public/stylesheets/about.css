@@ -3,6 +3,10 @@
     text-decoration: none;
 }
 
+body {
+    padding: 15px 40px;
+}
+
 .top-container {
     height: 25vh;
     display: flex;

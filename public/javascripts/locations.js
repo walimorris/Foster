@@ -5,7 +5,7 @@ const locationsPage = $(function () {
     $geoLocateMeButton = $('#geolocate-me-button');
     $googleLocateMeButton = $('#googlelocate-me-button');
     $formBorder = $('#form-border');
-    $locationsSection = $('#locations-info-section');
+    $locationsSection = $('#locations-form-section');
 
     // error elements
     $googleLocateMeErrorElement = $('#googlelocate-me-error').hide();
@@ -142,7 +142,7 @@ const locationsPage = $(function () {
             });
             markUserOnMap(latitude, longitude);
         } catch(error) {
-            console.log('Error: ' + error)
+            showLocateMeError($geoLocateMeErrorElement, geoLocateErrorMsg);
         }
     }
 
