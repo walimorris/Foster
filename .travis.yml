@@ -9,6 +9,5 @@ notifications:
     on_failure: always
 deploy:
   provider: heroku
-  api_key:
-    secure: $HEROKU_API
+  api_key: "$HEROKU_API"
   app: foster-awareness
