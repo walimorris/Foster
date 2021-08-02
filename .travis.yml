@@ -1,9 +1,13 @@
 language: node_js
 node_js:
-  - 12
+- 12
 notifications:
   email:
     recipients:
-      - walimmorris@gmail.com
+    - walimmorris@gmail.com
     on_success: always
     on_failure: always
+deploy:
+  provider: heroku
+  api_key:
+    secure: D152LVItiqDxVlsnbsJxFPA5UxFM3d9EziBWuPaQeHwaKoIGmTOuMsAQCeOYu8meDWTxQkYugoaV3qXM/GS7NhaEzzubLyABeMcMEWSr2IbH18y0lkCZsvsxOmWfTBMbEbAKTpCu5gWy440CQaSOWQN/eo3L8m3tuzW6lstjSqvs3AQiO2GuDJVLJZyjozyqydGDUukQoRHtOaZHNC/GeWOA2xBqGQrDD5d2kdUrQR4DzEoTp52Mn8yNW/X3Epr5aEyu1KWyukdZIYQIDWUC+lEssAdgWNBpAvn2nsDNAoF2JRaheZ/a6cnQjMUC7gTWdHy/Y9WYBO+t9BUBiBiQFXvX2rk10sZZgP1F4QmpcGQPAdqd3wPEWrBjiwYCPJN+KligZmvEzsONnOhOFu0MrsOwJLPIW8yMTpa/6FiLUnmkzlOHTRVW7ZukoZMMq+i/uxbDJWYz+UcZ0OdYvjOA4/n2fpxfOBrScA5UkJJ1VoqMiWGZPiQcvpxwK5/IE0BZKcPwd8YNV5DHmo4unaMpS9CmvHdKpW1EgY2w40zPbZdeuFxAcLjLPDTA2CDE5QjzrhwtohXOaM4/Bt1iG1mLk/Y1KIEbPQMoN8WucnAR8+ahmR/Chh4zLCeETF+vH+nMyd8vXepG2JtJ2uVlrSFAT23uagK06gINirr/DoMV5X4=
