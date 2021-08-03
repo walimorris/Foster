@@ -25,6 +25,8 @@ const locationsPage = $(function () {
     const agencySearchTerms = [/family/i, /care/i, /foster/i, /adoption/i, /daycare/i, /childcare/i,/child services/i, /children/i, +
                                /human/i, /rights/i, /human rights/i];
 
+    var locationsCookie;
+
     initMap();
     setLocationsFormBorder();
 
@@ -110,7 +112,10 @@ const locationsPage = $(function () {
      * position.
      */
     function geoLocateMe() {
-        if (navigator.geolocation) {
+        console.log('contains location cookie: ' + locationsCookie);
+        if (locationsCookie !== undefined) {
+            locateFromSavedCookie();
+        } else if (navigator.geolocation) {
             if ($geoLocateMeErrorElement.show()) {
                 $geoLocateMeErrorElement.hide();
             }
@@ -121,11 +126,34 @@ const locationsPage = $(function () {
     }
 
     /**
+     * Uses saved location cookie to locate and mark user on map.
+     */
+    function locateFromSavedCookie() {
+        let lat = getLatLngFromCookie(0);
+        let lng = getLatLngFromCookie(1);
+        locateByLatLong(lat, lng);
+    }
+
+    /**
+     * The lat/lng of a saved cookie is seperated by the special character '/'.
+     * The cookie is split and the lat lng substrings are in either index 0 or
+     * 1, respectively. Return lat lng based on passed index n.
+     * @param n
+     * @returns {string}
+     */
+    function getLatLngFromCookie(n) {
+        let cookieSplit = locationsCookie.split('/');
+        return parseInt(cookieSplit[n].substring(4));
+    }
+
+    /**
      * Utilizing HTML's Geolocation API and {@link getCurrentPosition} to pass user's
-     * current latitiude and longitude to {@link locateByLatLong}.
+     * current latitiude and longitude to {@link locateByLatLong}. Saves location cookie.
      * @param pos
      */
     function writePosition(pos) {
+        Cookies.set('glocation', 'lat='+pos.coords.latitude+'/lng='+pos.coords.longitude, { expires: 365 });
+        locationsCookie = Cookies.get('glocation');
         locateByLatLong(pos.coords.latitude, pos.coords.longitude);
     }
 
