@@ -129,9 +129,7 @@ const locationsPage = $(function () {
      * Uses saved location cookie to locate and mark user on map.
      */
     function locateFromSavedCookie() {
-        let lat = getLatLngFromCookie(0);
-        let lng = getLatLngFromCookie(1);
-        locateByLatLong(lat, lng);
+        locateByLatLong(getLatLngFromCookie(0), getLatLngFromCookie(1));
     }
 
     /**
