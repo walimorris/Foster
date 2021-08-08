@@ -141,7 +141,7 @@ const locationsPage = $(function () {
      */
     function getLatLngFromCookie(n) {
         let cookieSplit = locationsCookie.split('/');
-        return parseInt(cookieSplit[n].substring(4));
+        return parseFloat(cookieSplit[n].substring(4));
     }
 
     /**
