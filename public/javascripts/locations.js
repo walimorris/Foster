@@ -10,12 +10,15 @@ const locationsPage = $(function () {
     // error elements
     $googleLocateMeErrorElement = $('#googlelocate-me-error').hide();
     $geoLocateMeErrorElement = $('#geolocate-me-error').hide();
+    $locationsMapErrorElement = $('#locations-map-error').hide();
 
     // error messages
     const stateDropDownErrorMsg = 'Please select state before submitting location';
     const cityDropDownErrorMsg = 'Please select city before submitting location';
     const cityStateDropDownErrorMsg = 'Please select city and state before submitting location';
     const geoLocateErrorMsg = 'Geolocation functionality unavailable, please select city and state';
+    const locationsMapErrorMsg = "Sorry we're facing issues returning your results.";
+    const locationsMapNoReultsMsg = "Sorry, no results were found for your searched location";
 
     // icons
     const you = "https://img.icons8.com/doodle/48/000000/street-view.png";
@@ -112,8 +115,7 @@ const locationsPage = $(function () {
      * position.
      */
     function geoLocateMe() {
-        console.log('contains location cookie: ' + locationsCookie);
-        if (locationsCookie !== undefined) {
+        if (locationsCookie) {
             locateFromSavedCookie();
         } else if (navigator.geolocation) {
             if ($geoLocateMeErrorElement.show()) {
@@ -207,12 +209,11 @@ const locationsPage = $(function () {
                     });
                     markUserOnMap(latitude, longitude);
                 } else {
-                    // handle bad status, no results.
                     if (!status === 'OK') {
-                        console.log('Bad return status');
+                        showLocateMeError($locationsMapErrorElement, locationsMapErrorMsg);
                     } else {
                         if (!results) {
-                            console.log('no results from query');
+                            showLocateMeError($locationsMapErrorElement, locationsMapNoReultsMsg);
                         }
                     }
                 }
@@ -266,11 +267,10 @@ const locationsPage = $(function () {
                     }
                 }
             } else if(!status === 'OK') {
-                // error handling
-                console.log('Bad Google Places Query');
+                showLocateMeError($locationsMapErrorElement, locationsMapErrorMsg);
             } else {
                 // no results handling
-                console.log('Empty results');
+                showLocateMeError($locationsMapErrorElement, locationsMapNoReultsMsg);
             }
         });
     }
