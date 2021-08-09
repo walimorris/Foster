@@ -28,30 +28,31 @@
             <section class="contact-form-inner-section">
             <div class="contact-form-inner-div">
                 <label for="contact-form-firstname">First Name - (required)</label><br/>
-                <input class="contact-form-input" id="contact-form-firstname" name="firstname">
+                <input class="contact-form-input" id="contact-form-firstname" name="firstname" placeholder="Please enter first name...">
             </div>
             <div class="float-inner-div-left">
                 <label for="contact-form-lastname">Last Name - (required)</label><br/>
-                <input class="contact-form-input" id="contact-form-lastname" name="lastname">
+                <input class="contact-form-input" id="contact-form-lastname" name="lastname" placeholder="Please enter last name...">
             </div>
             </section>
             <section class="contact-form-inner-section">
                 <div class="contact-form-inner-div">
                     <label for="contact-form-email">Email - (required)</label><br/>
-                    <input class="contact-form-input" id="contact-form-email" name="email">
+                    <input class="contact-form-input" id="contact-form-email" name="email" placeholder="JohnDoe@gmail.com">
                 </div>
                 <div class="float-inner-div-left">
                     <label for="contact-form-phonenumber">Telephone Number</label><br/>
-                    <input class="contact-form-input" id="contact-form-phonenumber" name="phonenumber"><br style="clear: both"/>
+                    <input class="contact-form-input" id="contact-form-phonenumber" name="phonenumber" placeholder="10 digit number..."><br style="clear: both"/>
                 </div>
             </section>
             <section>
                 <div>
                     <label for="contact-form-textarea">Message</label>
-                    <textarea id="contact-form-textarea"></textarea>
+                    <textarea id="contact-form-textarea" placeholder="How can we help you?"></textarea>
                 </div>
                 <div>
                     <button id="contact-form-button">Submit</button>
+                    <div class="g-recaptcha" data-sitekey="your_site_key"></div>
                 </div>
             </section>
         </form>

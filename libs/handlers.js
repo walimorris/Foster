@@ -43,6 +43,7 @@ exports.home = (request, response) => {
         csrfToken: request.csrfToken,
         botId: bot,
         hasGoogleMap: false,
+        hasRECAPTCHA: false,
     });
 }
 
@@ -56,6 +57,7 @@ exports.locations = (request, response) => response.render('locations', {
     botId: bot,
     googleApi: googleapi,
     hasGoogleMap: true,
+    hasRECAPTCHA: false,
 });
 
 exports.about = (request, response) => response.render('about', {
@@ -67,6 +69,7 @@ exports.about = (request, response) => response.render('about', {
     csrfToken: request.csrfToken,
     botId: bot,
     hasGoogleMap: false,
+    hasRECAPTCHA: true,
 });
 
 exports.notFound = (request, response) => response.render('404', { layout: false });
