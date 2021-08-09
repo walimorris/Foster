@@ -93,3 +93,11 @@ body {
     background-color: #52307c;
     color: #fff;
 }
+
+#contact-form-br {
+    clear: both;
+}
+
+.g-recaptcha {
+    padding-top: 10px;
+}
