@@ -12,7 +12,7 @@ body {
 }
 
 #top-div-border {
-    border-top: 2px solid #000000;
+    border-top: 2px solid #000;
 }
 
 .locations-form-container section {
@@ -20,7 +20,7 @@ body {
 }
 
 #locations-map {
-    border-top: 2px solid #000000;
+    border-top: 2px solid #000;
     height: 600px;
     width: 100%;
 }
@@ -41,19 +41,19 @@ body {
 
 .locate-button {
     background-repeat: no-repeat;
-    background-color: #000000;
+    background-color: #000;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     border-radius: 12px;
-    color: #ffffff;
+    color: #fff;
     font-size: 26px;
     width: 200px;
     height: 50px;
 }
 
 .locate-button:hover {
-    background-color: dodgerblue;
+    background-color: #1e90ff;
 }
 
 #locations-form-section {
@@ -74,7 +74,7 @@ body {
 }
 
 #geo-bold {
-    color: dodgerblue;
+    color: #1e90ff;
 }
 
 .locations-text-format {
@@ -88,7 +88,7 @@ body {
     width: 350px;
     font-size: 18px;
     background-color: transparent;
-    color: #000000;
+    color: #000;
     border-radius: 12px;
 }
 
