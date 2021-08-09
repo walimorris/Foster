@@ -27,22 +27,23 @@
         <form id="contact-form">
             <section class="contact-form-inner-section">
             <div class="contact-form-inner-div">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
                 <label for="contact-form-firstname">First Name - (required)</label><br/>
-                <input class="contact-form-input" id="contact-form-firstname" name="firstname" placeholder="Please enter first name...">
+                <input class="contact-form-input" id="contact-form-firstname" type="text" name="firstname" placeholder="Please enter first name...">
             </div>
             <div class="float-inner-div-left">
                 <label for="contact-form-lastname">Last Name - (required)</label><br/>
-                <input class="contact-form-input" id="contact-form-lastname" name="lastname" placeholder="Please enter last name...">
+                <input class="contact-form-input" id="contact-form-lastname" type="text" name="lastname" placeholder="Please enter last name...">
             </div>
             </section>
             <section class="contact-form-inner-section">
                 <div class="contact-form-inner-div">
                     <label for="contact-form-email">Email - (required)</label><br/>
-                    <input class="contact-form-input" id="contact-form-email" name="email" placeholder="JohnDoe@gmail.com">
+                    <input class="contact-form-input" id="contact-form-email" type="email" name="email" placeholder="JohnDoe@gmail.com">
                 </div>
                 <div class="float-inner-div-left">
                     <label for="contact-form-phonenumber">Telephone Number</label><br/>
-                    <input class="contact-form-input" id="contact-form-phonenumber" name="phonenumber" placeholder="10 digit number..."><br style="clear: both"/>
+                    <input class="contact-form-input" id="contact-form-phonenumber" type="number" name="phonenumber" placeholder="10 digit number..."><br style="clear: both"/>
                 </div>
             </section>
             <section>
@@ -51,7 +52,7 @@
                     <textarea id="contact-form-textarea" placeholder="How can we help you?"></textarea>
                 </div>
                 <div>
-                    <button id="contact-form-button">Submit</button>
+                    <button id="contact-form-button" type="submit">Submit</button>
                     <div class="g-recaptcha" data-sitekey="your_site_key"></div>
                 </div>
             </section>
