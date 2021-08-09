@@ -25,23 +25,35 @@
         <h1>Contact Form</h1>
         <p>We'd love to hear from you, please send us a message.</p>
         <form id="contact-form">
-            <div style="padding-bottom: 75px;">
-                <label for="contact-form-firstname">First Name</label>
-                <input id="contact-form-firstname" name="firstname">
-                <label style="margin-left: 25vw;" for="contact-form-lastname">Last Name</label>
-                <input id="contact-form-lastname" name="lastname"><br/>
+            <section class="contact-form-inner-section">
+            <div class="contact-form-inner-div">
+                <label for="contact-form-firstname">First Name - (required)</label><br/>
+                <input class="contact-form-input" id="contact-form-firstname" name="firstname">
             </div>
-            <div style="padding-bottom: 75px;">
-                <label for="contact-form-email">Email</label>
-                <input id="contact-form-email" name="email">
-                <label style="margin-left: 25vw;" for="contact-form-phonenumber">Telephone Number</label>
-                <input id="contact-form-phonenumber" name="phonenumber"><br/>
+            <div class="float-inner-div-left">
+                <label for="contact-form-lastname">Last Name - (required)</label><br/>
+                <input class="contact-form-input" id="contact-form-lastname" name="lastname">
             </div>
-            <div>
-                <label for="contact-form-textarea">Message</label>
-                <textarea id="contact-form-textarea"></textarea><br/>
-                <button id="contact-form-button">Submit</button>
-            </div>
+            </section>
+            <section class="contact-form-inner-section">
+                <div class="contact-form-inner-div">
+                    <label for="contact-form-email">Email - (required)</label><br/>
+                    <input class="contact-form-input" id="contact-form-email" name="email">
+                </div>
+                <div class="float-inner-div-left">
+                    <label for="contact-form-phonenumber">Telephone Number</label><br/>
+                    <input class="contact-form-input" id="contact-form-phonenumber" name="phonenumber"><br style="clear: both"/>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <label for="contact-form-textarea">Message</label>
+                    <textarea id="contact-form-textarea"></textarea>
+                </div>
+                <div>
+                    <button id="contact-form-button">Submit</button>
+                </div>
+            </section>
         </form>
     </section>
 </div>

@@ -61,6 +61,23 @@ body {
     padding-right: 100px;
 }
 
+.contact-form-inner-section {
+    padding-bottom: 125px;
+}
+
+.contact-form-inner-div {
+    margin-right: 25vw;
+    float: left;
+}
+
+.float-inner-div-left {
+    float: left;
+}
+
+.contact-form-input {
+    width: 100%;
+}
+
 #contact-form-textarea {
     width: 100%;
     height: 125px;
@@ -68,6 +85,8 @@ body {
 
 #contact-form-button {
     margin-top: 10px;
+    width: 150px;
+    height: 40px;
     background-color: #52307c;
     color: #fff;
 }
