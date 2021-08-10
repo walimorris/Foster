@@ -50,6 +50,8 @@ app.get('/about', handlers.about);
 
 app.post('/api/emailSubscriptions', handlers.api.emailSubscriptions);
 
+app.post('/api/aboutContactForm', handlers.api.aboutContactForm);
+
 // csurf token error
 app.use(function (error, request, response, next) {
     if (error !== 'EBADCSRFTOKEN') {

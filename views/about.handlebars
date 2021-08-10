@@ -24,7 +24,7 @@
     <section class="contact-form-section">
         <h1>Contact Form</h1>
         <p>We'd love to hear from you, please send us a message.</p>
-        <form id="contact-form">
+        <form id="contact-form" action="/api/aboutContactForm" method="post">
             <section class="contact-form-inner-section">
             <div class="contact-form-inner-div">
                 <input type="hidden" name="_csrf" value="{{csrfToken}}">
@@ -49,7 +49,7 @@
             <section>
                 <div>
                     <label for="contact-form-textarea">Message</label>
-                    <textarea id="contact-form-textarea" placeholder="How can we help you?"></textarea>
+                    <textarea id="contact-form-textarea" name="message" placeholder="How can we help you?"></textarea>
                 </div>
                 <div>
                     <button id="contact-form-button" type="submit">Submit</button>

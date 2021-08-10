@@ -2,7 +2,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const csrf = require('csurf');
-const {check, validationResult} = require('express-validator');
+const {check, body, validationResult} = require('express-validator');
 var MongoClient = require('mongodb').MongoClient;
 const express = require('express');
 const app = express();
@@ -86,7 +86,7 @@ exports.api = {
     emailSubscriptions:  async function (request, response) {
         const email = request.body.emailSubscriber;
         const activatingPage = request.body.page;
-        
+
         try {
             await client.connect();
             const database = client.db(fr);
@@ -103,6 +103,23 @@ exports.api = {
             console.log(err);
             response.status(400);
             response.render(activatingPage, {subscribeMessage: err.toString()});
+        }
+    },
+
+    aboutContactForm: async function (request, response) {
+        const firstName = request.body.firstname;
+        const lastName = request.body.lastname;
+        const email = request.body.email;
+        const phoneNumber = request.body.phonenumber;
+        const message = request.body.message;
+
+        console.log(`${firstName} ${lastName}: ${email}, ${phoneNumber}\n${message}`);
+
+        if (firstName !== null && lastName !== null && email !== null && phoneNumber !== ''
+            && message !== null) {
+            response.status(200);
+        } else {
+            response.status(400);
         }
     }
 }
