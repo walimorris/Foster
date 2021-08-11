@@ -5,6 +5,7 @@ const csrf = require('csurf');
 const {check, body, validationResult} = require('express-validator');
 var MongoClient = require('mongodb').MongoClient;
 const axios = require('axios').default;
+const cors = require('cors');
 const express = require('express');
 const app = express();
 
@@ -31,7 +32,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false },
 }));
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -136,7 +137,8 @@ exports.api = {
         axios.request(options).then(function (res) {
             if (res.data === 'sent') {
                 // create thank you page for redirect
-                response.redirect('/thankyou');
+                response.status(200);
+                response.send('success');
             }
         }).catch(function (error) {
             // handle api error
