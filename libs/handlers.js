@@ -4,6 +4,7 @@ const session = require('express-session');
 const csrf = require('csurf');
 const {check, body, validationResult} = require('express-validator');
 var MongoClient = require('mongodb').MongoClient;
+const axios = require('axios').default;
 const express = require('express');
 const app = express();
 
@@ -15,6 +16,7 @@ const subs = process.env.SUBS;
 const cluster = process.env.CLUSTER;
 const googleapi = process.env.GOOGLEAPI;
 const bot = process.env.BOTID;
+const rapidApiKey = process.env.RAPID_API_KEY;
 
 const uri = db + user + ":" + key + cluster;
 const client = new MongoClient(uri, {useUnifiedTopology: true});
@@ -107,19 +109,36 @@ exports.api = {
     },
 
     aboutContactForm: async function (request, response) {
+        // Validate values
         const firstName = request.body.firstname;
         const lastName = request.body.lastname;
         const email = request.body.email;
-        const phoneNumber = request.body.phonenumber;
+        const phonenumber = request.body.phonenumber;
         const message = request.body.message;
 
-        console.log(`${firstName} ${lastName}: ${email}, ${phoneNumber}\n${message}`);
-
-        if (firstName !== null && lastName !== null && email !== null && phoneNumber !== ''
-            && message !== null) {
-            response.status(200);
-        } else {
-            response.status(400);
-        }
+        const options = {
+            method: 'POST',
+            url: 'https://email-sender1.p.rapidapi.com/',
+            params: {
+                txt_msg: `${message}\n\nPhone: ${phonenumber}`,
+                to: 'walimmorris@gmail.com',
+                from: `${firstName} ${lastName}`,
+                subject: `You have a new message on Foster Awareness from ${firstName} ${lastName}`,
+                reply_to: email
+            },
+            headers: {
+                'x-rapidapi-key': rapidApiKey,
+                'x-rapidapi-host': 'email-sender1.p.rapidapi.com'
+            }
+        };
+        axios.request(options).then(function (res) {
+            if (res.data === 'sent') {
+                // create thank you page for redirect
+                response.redirect('/');
+            }
+        }).catch(function (error) {
+            // handle api error
+            console.log(error);
+        });
     }
 }
