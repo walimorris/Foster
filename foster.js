@@ -48,6 +48,8 @@ app.get('/locations', handlers.locations);
 
 app.get('/about', handlers.about);
 
+app.get('/thankyou', handlers.thankyou);
+
 app.post('/api/emailSubscriptions', handlers.api.emailSubscriptions);
 
 app.post('/api/aboutContactForm', handlers.api.aboutContactForm);

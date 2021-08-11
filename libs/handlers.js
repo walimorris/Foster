@@ -74,6 +74,8 @@ exports.about = (request, response) => response.render('about', {
     hasRECAPTCHA: true,
 });
 
+exports.thankyou = (request, response) => response.render('thankyou', { layout: false });
+
 exports.notFound = (request, response) => response.render('404', { layout: false });
 
 // Express handles this error by way of the four arguments. We need the next argument,
@@ -134,7 +136,7 @@ exports.api = {
         axios.request(options).then(function (res) {
             if (res.data === 'sent') {
                 // create thank you page for redirect
-                response.redirect('/');
+                response.redirect('/thankyou');
             }
         }).catch(function (error) {
             // handle api error

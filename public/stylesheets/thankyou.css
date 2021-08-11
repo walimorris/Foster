@@ -1,0 +1,32 @@
+body {
+    background-color: #f5f5f5;
+}
+
+.thankyou-container {
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+#message {
+    color: #696969;
+}
+
+.thankyou-message-container {
+    display: flex;
+    justify-content: center;
+}
+
+.thankyou-trouble-container {
+    display: flex;
+    justify-content: center;
+}
+
+.thankyou-continue-container {
+    display: flex;
+    justify-content: center;
+}
+
+#continue-button {
+    background-color: #e190ff;
+}
