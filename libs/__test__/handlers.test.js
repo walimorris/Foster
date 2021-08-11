@@ -21,6 +21,13 @@ test('locations page renders', () => {
     expect(response.render.mock.calls[0][0]).toBe('locations');
 });
 
+test('thankyou page renders', () => {
+    const request = {};
+    const response = { render: jest.fn() };
+    handlers.thankyou(request, response);
+    expect(response.render.mock.calls[0][0]).toBe('thankyou');
+});
+
 test('404 page renders', () => {
     const request = {};
     const response = { render: jest.fn() };
