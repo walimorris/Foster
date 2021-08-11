@@ -10,6 +10,23 @@ const homepage = $(function () {
     const tourCtaButtonBorder = '3px solid #ffffff';
     const tourCtaButtonBorderHover = '3px solid #000000';
 
+    // dynamically load new ny times articles
+    window.addEventListener('load', () => {
+        const articles = [];
+        fetch('/api/nyTimesArticles')
+            .then(response => response.json())
+            .then(data => {
+                const fullData = data;
+                const results = fullData.data.response.docs;
+                console.log(results);
+                for (let i = 0; i < results.length; i++) {
+                    articles.push(results[i]);
+                }
+            });
+
+        console.log(articles);
+    });
+
     /**
      * Listens for mouseover interaction on tour cta button.
      */

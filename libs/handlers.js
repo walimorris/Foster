@@ -17,6 +17,7 @@ const cluster = process.env.CLUSTER;
 const googleapi = process.env.GOOGLEAPI;
 const bot = process.env.BOTID;
 const rapidApiKey = process.env.RAPID_API_KEY;
+const newYorkTimesKey = process.env.NEWYORK_TIMES_KEY;
 
 const uri = db + user + ":" + key + cluster;
 const client = new MongoClient(uri, {useUnifiedTopology: true});
@@ -140,6 +141,32 @@ exports.api = {
             }
         }).catch(function (error) {
             // handle api error
+            console.log(error);
+        });
+    },
+
+    nyTimesArticles: function(request, response) {
+        const options = {
+            method: 'GET',
+            url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json',
+            params: {
+                begin_date: '20100101',
+                end_date: '20210811',
+                facet: false,
+                facet_field: 'source',
+                facet_filter: false,
+                page: 1,
+                q: 'adoption',
+                sort: 'newest',
+                'api-key': newYorkTimesKey,
+            }
+        }
+        axios.request(options).then(function (res) {
+            return response.status(200).json({
+                ok: true,
+                data: res.data
+            })
+        }).catch(function (error) {
             console.log(error);
         });
     }
