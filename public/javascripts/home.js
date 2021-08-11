@@ -10,8 +10,6 @@ const homepage = $(function () {
     const tourCtaButtonBorder = '3px solid #ffffff';
     const tourCtaButtonBorderHover = '3px solid #000000';
 
-
-
     /**
      * Listens for mouseover interaction on tour cta button.
      */
