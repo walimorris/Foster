@@ -155,7 +155,7 @@ exports.api = {
                 facet: false,
                 facet_field: 'source',
                 facet_filter: false,
-                page: 1,
+                page: 0,
                 q: 'adoption',
                 sort: 'newest',
                 'api-key': newYorkTimesKey,

@@ -55,7 +55,7 @@ body {
 
 .main {
     display: flex;
-    height: 1090px;
+    height: 1200px;
     padding-top: 20px;
 }
 
@@ -100,7 +100,7 @@ ul {
 }
 
 #news_section_2 {
-    margin-top: 130px;
+    margin-top: 165px;
     height: 37.5%;
 }
 

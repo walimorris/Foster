@@ -24,26 +24,36 @@ const homepage = $(function () {
     $newsSummary2 = $('#news-summary2');
     $newsLink2 = $('#news-link2');
 
-    /**
-     * This portion of home page should run immediately each day when user lands on page.
-     * The exception is if the dynamic news feature elements are cached because the articles
-     * are still on the same day, page refresh should use cached data. Rather than select
-     * top 2 results, should we chose random results from all article results? This should be
-     * cached for quicker load!
-     * @type {*[]}
-     */
-    const articles = [];
-    fetch('/api/nyTimesArticles').then(response => response.json()).then(data => {
-        const fullData = data;
-        const results = fullData.data.response.docs;
-        console.log(results);
+    buildArticleSection();
 
-        // pull first two articles
-        for (let i = 0; i < 2; i++) {
-            articles.push(results[i]);
+    function buildArticleSection() {
+        const articles = [];
+        fetch('/api/nyTimesArticles').then(response => response.json()).then(data => {
+            const fullData = data;
+            const results = fullData.data.response.docs;
+
+            const randomIndex1 = getRandomNumberInRange(10, 11);
+            const randomIndex2 = getRandomNumberInRange(10, randomIndex1);
+
+            articles.push(results[randomIndex1]);
+            articles.push(results[randomIndex2]);
+            disectTimesArticles(articles);
+        });
+    }
+
+    /**
+     * Get random number between 0 and chosen param x
+     * @param x max number, not inclusive
+     * @param y number which shouldn't be returned
+     * @returns {number}
+     */
+    function getRandomNumberInRange(x, y) {
+        let num = y;
+        while (num === y) {
+            num = Math.floor(Math.random() * x);
         }
-        disectTimesArticles(articles);
-    });
+        return num;
+    }
 
     function disectTimesArticles(articleList) {
         const imageDomain = "https://www.nytimes.com/";
